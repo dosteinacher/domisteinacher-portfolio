@@ -22,8 +22,9 @@ export default function Home() {
               Pole Vault Champion · Coach · Digital Solutions Expert
             </p>
             <p className="text-lg text-chalk/80 mb-8 leading-relaxed">
-              I coach at <span className="text-rust font-semibold">GO PURE</span> and lead strategic 
-              transformation at Adobe. The athletic background helps—I was Swiss Pole Vault Champion in 1996.
+              I love Crossfit and push the limits. Coaching at GO PURE is amazing. At Adobe, 
+              I lead strategic transformation and growth. My athletic background helps—I was 
+              Swiss Pole Vault Champion in 1996.
             </p>
             
             {/* CTA Buttons */}
