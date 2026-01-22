@@ -124,8 +124,13 @@ export default function Home() {
       </section>
 
       {/* Projects Section */}
-      <section className="py-20 px-4">
-        <div className="max-w-6xl mx-auto">
+      <section className="py-20 px-4 relative">
+        {/* Watermark Logo */}
+        <div className="absolute inset-0 flex items-center justify-center opacity-7 grayscale pointer-events-none">
+          <img src="/go-pure-logo.png" alt="GO PURE Logo Watermark" className="w-[600px] h-[600px] object-contain" />
+        </div>
+        
+        <div className="max-w-6xl mx-auto relative z-10">
           <h2 className="text-4xl md:text-5xl font-bold text-chalk mb-12 uppercase tracking-tight">
             Projects
           </h2>
