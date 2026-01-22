@@ -80,7 +80,17 @@ export default function Home() {
           </h2>
           <div className="grid md:grid-cols-2 gap-12">
             <div>
-              <h3 className="text-2xl font-bold text-rust mb-4">Athletic Background</h3>
+              <div className="flex items-center gap-4 mb-4">
+                <div className="relative w-16 h-16 rounded-full overflow-hidden border-2 border-rust flex-shrink-0">
+                  <Image
+                    src="/pole.JPG"
+                    alt="Pole Vault"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <h3 className="text-2xl font-bold text-rust">Athletic Background</h3>
+              </div>
               <p className="text-chalk/80 text-lg leading-relaxed mb-6">
                 Swiss Pole Vault Champion in 1996. The discipline, focus, and dedication required 
                 in competitive athletics shaped my approach to everything I do.
@@ -91,7 +101,17 @@ export default function Home() {
               </p>
             </div>
             <div>
-              <h3 className="text-2xl font-bold text-rust mb-4">Professional Life</h3>
+              <div className="flex items-center gap-4 mb-4">
+                <div className="relative w-16 h-16 rounded-full overflow-hidden border-2 border-rust flex-shrink-0">
+                  <Image
+                    src="/balck&White1.jpg"
+                    alt="Professional"
+                    fill
+                    className="object-cover grayscale"
+                  />
+                </div>
+                <h3 className="text-2xl font-bold text-rust">Professional Life</h3>
+              </div>
               <p className="text-chalk/80 text-lg leading-relaxed mb-6">
                 I lead strategic transformation at Adobe—growth tactics, not technology.
               </p>
