@@ -1,5 +1,6 @@
 import Navbar from '@/components/Navbar';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function WinningTheGamePage() {
   return (
@@ -17,12 +18,22 @@ export default function WinningTheGamePage() {
             Winning the Game: Lessons from Sport, CrossFit, and Pole Vaulting in PLG, Sales, and Culture Change
           </h1>
           
-          <div className="flex items-center gap-4 text-steel">
+          <div className="flex items-center gap-4 text-steel mb-8">
             <time>Feb 7, 2025</time>
             <span>•</span>
             <span>by Dominik Steinacher</span>
             <span>•</span>
             <span>5 min read</span>
+          </div>
+
+          {/* Cover Image */}
+          <div className="relative h-96 w-full rounded-lg overflow-hidden mb-8">
+            <Image
+              src="/blogs/Picture1.jpg"
+              alt="Winning the Game"
+              fill
+              className="object-cover"
+            />
           </div>
         </div>
 
@@ -64,6 +75,17 @@ export default function WinningTheGamePage() {
               Athletes don't just train — they prove results. CrossFitters don't "sell" workouts, and 
               pole vaulters don't "sell" technique. The proof is in performance.
             </p>
+
+            {/* Inline Image */}
+            <div className="relative h-80 w-full rounded-lg overflow-hidden my-8">
+              <Image
+                src="/blogs/Picture2.jpg"
+                alt="Performance in action"
+                fill
+                className="object-cover"
+              />
+            </div>
+
             <ul className="space-y-4 text-steel text-lg">
               <li className="pl-6 border-l-2 border-steel">
                 <strong className="text-chalk">Example:</strong> In CrossFit, beginners may start with 

@@ -11,6 +11,7 @@ const blogPosts = [
     author: 'Dominik Steinacher',
     excerpt: 'Success, whether in sports, business, or personal growth, is built on resilience, adaptability, and execution.',
     readTime: '5 min read',
+    coverImage: '/blogs/Picture1.jpg',
   },
 ];
 
@@ -38,28 +39,42 @@ export default function DomiBlogsPage() {
               href={`/domiblogs/${post.slug}`}
               className="block group"
             >
-              <article className="bg-concrete p-8 rounded-lg border-l-4 border-steel hover:border-rust transition-all duration-300">
-                <div className="flex items-center gap-4 text-sm text-steel mb-4">
-                  <time>{post.date}</time>
-                  <span>•</span>
-                  <span>{post.readTime}</span>
-                  <span>•</span>
-                  <span>{post.author}</span>
-                </div>
+              <article className="bg-concrete rounded-lg border-l-4 border-steel hover:border-rust transition-all duration-300 overflow-hidden">
+                {/* Cover Image */}
+                {post.coverImage && (
+                  <div className="relative h-64 w-full overflow-hidden">
+                    <Image
+                      src={post.coverImage}
+                      alt={post.title}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                  </div>
+                )}
                 
-                <h2 className="text-2xl md:text-3xl font-bold text-chalk mb-4 group-hover:text-rust transition">
-                  {post.title}
-                </h2>
-                
-                <p className="text-steel text-lg leading-relaxed mb-4">
-                  {post.excerpt}
-                </p>
-                
-                <div className="flex items-center gap-2 text-rust font-semibold">
-                  Read More
-                  <svg className="w-5 h-5 group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-                  </svg>
+                <div className="p-8">
+                  <div className="flex items-center gap-4 text-sm text-steel mb-4">
+                    <time>{post.date}</time>
+                    <span>•</span>
+                    <span>{post.readTime}</span>
+                    <span>•</span>
+                    <span>{post.author}</span>
+                  </div>
+                  
+                  <h2 className="text-2xl md:text-3xl font-bold text-chalk mb-4 group-hover:text-rust transition">
+                    {post.title}
+                  </h2>
+                  
+                  <p className="text-steel text-lg leading-relaxed mb-4">
+                    {post.excerpt}
+                  </p>
+                  
+                  <div className="flex items-center gap-2 text-rust font-semibold">
+                    Read More
+                    <svg className="w-5 h-5 group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                    </svg>
+                  </div>
                 </div>
               </article>
             </Link>
