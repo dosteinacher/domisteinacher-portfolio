@@ -1,8 +1,55 @@
 import Navbar from '@/components/Navbar';
 import Link from 'next/link';
 import Image from 'next/image';
+import { notFound } from 'next/navigation';
 
-export default function WinningTheGamePage() {
+// Blog post data
+const blogPosts: Record<string, any> = {
+  'winning-the-game': {
+    title: 'Winning the Game: Lessons from Sport, CrossFit, and Pole Vaulting in PLG, Sales, and Culture Change',
+    date: 'Feb 7, 2025',
+    author: 'Dominik Steinacher',
+    readTime: '5 min read',
+    coverImage: '/blogs/Picture1.jpg',
+    content: 'winning-the-game',
+  },
+  'hybrid-sales-strategies': {
+    title: 'The Rise of Hybrid Sales Strategies: Navigating the Future of B2B Software Sales',
+    date: 'Jan 23, 2026',
+    author: 'Dominik Steinacher',
+    readTime: '8 min read',
+    coverImage: '/blogs/Blog2a.jpg',
+    content: 'hybrid-sales-strategies',
+  },
+};
+
+export async function generateStaticParams() {
+  return Object.keys(blogPosts).map((slug) => ({
+    slug,
+  }));
+}
+
+export default function BlogPostPage({ params }: { params: { slug: string } }) {
+  const post = blogPosts[params.slug];
+
+  if (!post) {
+    notFound();
+  }
+
+  // Render different content based on slug
+  if (params.slug === 'winning-the-game') {
+    return <WinningTheGameContent post={post} />;
+  }
+
+  if (params.slug === 'hybrid-sales-strategies') {
+    return <HybridSalesStrategiesContent post={post} />;
+  }
+
+  return notFound();
+}
+
+// Winning the Game Content Component
+function WinningTheGameContent({ post }: { post: any }) {
   return (
     <main className="min-h-screen bg-charcoal">
       <Navbar />
@@ -15,22 +62,22 @@ export default function WinningTheGamePage() {
           </Link>
           
           <h1 className="text-4xl md:text-5xl font-bold text-chalk mb-6 leading-tight">
-            Winning the Game: Lessons from Sport, CrossFit, and Pole Vaulting in PLG, Sales, and Culture Change
+            {post.title}
           </h1>
           
           <div className="flex items-center gap-4 text-steel mb-8">
-            <time>Feb 7, 2025</time>
+            <time>{post.date}</time>
             <span>•</span>
-            <span>by Dominik Steinacher</span>
+            <span>by {post.author}</span>
             <span>•</span>
-            <span>5 min read</span>
+            <span>{post.readTime}</span>
           </div>
 
           {/* Cover Image */}
           <div className="relative h-96 w-full rounded-lg overflow-hidden mb-8">
             <Image
-              src="/blogs/Picture1.jpg"
-              alt="Winning the Game"
+              src={post.coverImage}
+              alt={post.title}
               fill
               className="object-cover"
             />
@@ -130,6 +177,188 @@ export default function WinningTheGamePage() {
               consistency, adaptation, and the willingness to push limits. Whether you're scaling a startup, 
               coaching a sales team, or training for your next big competition, success isn't about one big 
               win — it's about showing up, learning, and improving every day.
+            </p>
+          </section>
+        </div>
+
+        {/* Back Button */}
+        <div className="mt-12 pt-8 border-t border-steel/30">
+          <Link href="/domiblogs" className="inline-block bg-rust hover:bg-red-700 text-chalk px-8 py-3 rounded-lg font-bold transition">
+            ← Back to All Posts
+          </Link>
+        </div>
+      </article>
+    </main>
+  );
+}
+
+// Hybrid Sales Strategies Content Component  
+function HybridSalesStrategiesContent({ post }: { post: any }) {
+  return (
+    <main className="min-h-screen bg-charcoal">
+      <Navbar />
+      
+      <article className="container mx-auto px-4 py-24 max-w-4xl">
+        {/* Header */}
+        <div className="mb-12">
+          <Link href="/domiblogs" className="text-rust hover:text-red-400 font-semibold mb-6 inline-block">
+            ← Back to DomiBlogs
+          </Link>
+          
+          <h1 className="text-4xl md:text-5xl font-bold text-chalk mb-6 leading-tight">
+            {post.title}
+          </h1>
+          
+          <div className="flex items-center gap-4 text-steel mb-8">
+            <time>{post.date}</time>
+            <span>•</span>
+            <span>by {post.author}</span>
+            <span>•</span>
+            <span>{post.readTime}</span>
+          </div>
+
+          {/* Cover Image */}
+          <div className="relative h-96 w-full rounded-lg overflow-hidden mb-8">
+            <Image
+              src={post.coverImage}
+              alt={post.title}
+              fill
+              className="object-cover"
+            />
+          </div>
+        </div>
+
+        {/* Content */}
+        <div className="prose prose-invert prose-lg max-w-none">
+          <section className="mb-8">
+            <h2 className="text-3xl font-bold text-rust mb-4">Introduction</h2>
+            <p className="text-steel text-lg leading-relaxed mb-4">
+              The B2B software industry has long relied on Sales-led Growth (SLG). This strategy 
+              emphasizes direct, personal interactions through face-to-face meetings, phone calls, 
+              and networking. Relationship-building drives this approach. Understanding customer needs 
+              through direct communication defines success. This method requires significant resources 
+              and relies heavily on skilled, persistent sales teams.
+            </p>
+            <p className="text-steel text-lg leading-relaxed mb-4">
+              The 21st century brought a shift toward customer-centric models. Companies began using 
+              analytics and customer data to create specific value. They focused on addressing actual 
+              needs and pain points. This evolution produced more personalized, engaging tactics. The 
+              goal shifted from closing immediate sales to building long-term relationships.
+            </p>
+            <p className="text-steel text-lg leading-relaxed">
+              SLG follows a top-down strategy initiated by leadership. This often triggers extensive 
+              RFP and RFI processes based on analyst recommendations. The process centers on comprehensive 
+              feature checklists. It includes product demos, technical evaluations, and sometimes months-long 
+              custom POCs. The purchase decision comes from top decision-makers. Users rarely participate. 
+              After thorough evaluations aligned with strategic goals, teams select a vendor and deploy 
+              for broader access.
+            </p>
+          </section>
+
+          <section className="mb-8">
+            <h2 className="text-3xl font-bold text-rust mb-4">The Market is Changing</h2>
+            <p className="text-steel text-lg leading-relaxed mb-4">
+              Disruptive competitors and new growth strategies are reshaping the software landscape 
+              through disintermediation. The traditional sales-led approach alone no longer suffices.
+            </p>
+            <p className="text-steel text-lg leading-relaxed mb-4">
+              Beyond SLG, two strategies dominate current discussions: Product-led Growth (PLG) and 
+              Community-led Growth (CLG). Marketing-led Growth (MLG) remains omnipresent and plays 
+              a supporting role in most strategies.
+            </p>
+            <p className="text-steel text-lg leading-relaxed mb-4">
+              PLG has emerged as a significant trend. It uses the product itself as the primary driver 
+              for customer acquisition, expansion, and retention. The product experience becomes central. 
+              Companies offer free trials or freemium versions to attract users. The emphasis shifts to 
+              creating a product that sells itself through value and ease of use. This reduces reliance 
+              on traditional sales intermediation.
+            </p>
+            <p className="text-steel text-lg leading-relaxed">
+              CLG takes this further. It harnesses community power to drive user acquisition, engagement, 
+              and retention. Both PLG and CLG share a common goal: creating advocates who spread positive 
+              sentiment about the product.
+            </p>
+          </section>
+
+          {/* Excurse Section with Image */}
+          <section className="mb-8 bg-concrete/50 p-8 rounded-lg border-l-4 border-rust">
+            <h3 className="text-2xl font-bold text-rust mb-4">Growth Strategies</h3>
+            
+            <div className="relative h-96 w-full rounded-lg overflow-hidden my-6">
+              <Image
+                src="/blogs/Picture2b.jpg"
+                alt="Growth Strategies Visualization"
+                fill
+                className="object-cover"
+              />
+            </div>
+          </section>
+
+          <section className="mb-8">
+            <h2 className="text-3xl font-bold text-rust mb-4">The Emergence of Hybrid Models</h2>
+            <p className="text-steel text-lg leading-relaxed mb-4">
+              The industry now recognizes that no single sales approach fits all scenarios. This 
+              realization has driven the adoption of hybrid models. These combine traditional sales-led 
+              strengths with product-led efficiency and scalability. Companies tailor strategies based 
+              on product type, market conditions, and customer segments. They use a mix of direct sales 
+              efforts and self-service models.
+            </p>
+            <p className="text-steel text-lg leading-relaxed mb-4">
+              SLG suits large contracts and enterprise sales. PLG offers cost-effective growth and 
+              customer acquisition. Many companies now adopt a hybrid approach, often called 
+              "Product-led Sales." This merges PLG elements with traditional SLG tactics.
+            </p>
+            <p className="text-steel text-lg leading-relaxed mb-4">
+              The distinctions between SLG and PLG are fading. Pure PLG companies now employ sales 
+              teams for enterprise deals. Traditional SLG firms invest in product-led experiences to 
+              broaden customer appeal. The hybrid method merges bottom-up (PLG) and top-down (SLG) 
+              strategies. It emphasizes the product's role in demand generation while complementing 
+              it with sales for customer acquisition. This approach converts self-serve leads into 
+              sales opportunities. Sales representatives close major contracts. C-level buyers receive 
+              live demos. End-users can try the product to understand its value directly.
+            </p>
+            <p className="text-steel text-lg leading-relaxed">
+              According to McKinsey, two factors drive the growing appeal of hybrid growth models: 
+              cost-efficient expansion into new markets and the ability to turn smaller contracts 
+              into enterprise deals.
+            </p>
+          </section>
+
+          <section className="mb-8">
+            <h2 className="text-3xl font-bold text-rust mb-4">Summary</h2>
+            <p className="text-steel text-lg leading-relaxed mb-4">
+              Product-Led Growth offers cost-effective scalability and a user-focused approach through 
+              disintermediation. Yet it may miss larger deals due to the absence of direct sales insights.
+            </p>
+            <p className="text-steel text-lg leading-relaxed mb-4">
+              Sales-Led Growth excels at closing large deals and building deeper customer relationships. 
+              However, it tends to be costlier and less scalable.
+            </p>
+            <p className="text-steel text-lg leading-relaxed mb-4">
+              The Hybrid go-to-market strategy bridges these methods. It combines PLG's scalability and 
+              cost advantages with SLG's relationship-building prowess. This approach balances product-driven 
+              momentum with sales influence. Its versatility allows companies to transition between PLG and 
+              SLG based on market conditions, customer demands, or product maturity.
+            </p>
+            <p className="text-steel text-lg leading-relaxed mb-4">
+              Artificial intelligence and automation increasingly shape these strategies. AI-driven insights 
+              predict customer behavior, personalize interactions, and optimize sales processes. Automation 
+              tools streamline routine tasks. This frees sales teams to focus on strategic activities and 
+              relationship building.
+            </p>
+            <p className="text-steel text-lg leading-relaxed">
+              The future of sales strategies will become more adaptive, data-driven, and customer-centric. 
+              Success requires agility and adoption of emerging technologies. Continuous learning remains 
+              essential to align with evolving customer expectations and market dynamics in this rapidly 
+              changing landscape.
+            </p>
+          </section>
+
+          {/* Call to Action */}
+          <section className="mt-12 p-8 bg-rust/10 rounded-lg border-l-4 border-rust">
+            <p className="text-chalk text-lg italic">
+              What are your thoughts on hybrid sales strategies? Share your experiences and questions 
+              in the comments.
             </p>
           </section>
         </div>

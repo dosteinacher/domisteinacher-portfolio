@@ -5,6 +5,15 @@ import Image from 'next/image';
 // Blog posts data - we'll expand this as you add more
 const blogPosts = [
   {
+    slug: 'hybrid-sales-strategies',
+    title: 'The Rise of Hybrid Sales Strategies: Navigating the Future of B2B Software Sales',
+    date: 'Jan 23, 2026',
+    author: 'Dominik Steinacher',
+    excerpt: 'The B2B software industry is evolving beyond traditional sales-led approaches. Discover how hybrid models combine PLG efficiency with SLG relationship-building.',
+    readTime: '8 min read',
+    coverImage: '/blogs/Blog2a.jpg',
+  },
+  {
     slug: 'winning-the-game',
     title: 'Winning the Game: Lessons from Sport, CrossFit, and Pole Vaulting in PLG, Sales, and Culture Change',
     date: 'Feb 7, 2025',
