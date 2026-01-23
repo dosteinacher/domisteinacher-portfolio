@@ -29,19 +29,20 @@ export async function generateStaticParams() {
   }));
 }
 
-export default function BlogPostPage({ params }: { params: { slug: string } }) {
-  const post = blogPosts[params.slug];
+export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const post = blogPosts[slug];
 
   if (!post) {
     notFound();
   }
 
   // Render different content based on slug
-  if (params.slug === 'winning-the-game') {
+  if (slug === 'winning-the-game') {
     return <WinningTheGameContent post={post} />;
   }
 
-  if (params.slug === 'hybrid-sales-strategies') {
+  if (slug === 'hybrid-sales-strategies') {
     return <HybridSalesStrategiesContent post={post} />;
   }
 
