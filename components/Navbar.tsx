@@ -9,6 +9,7 @@ export default function Navbar() {
   const navItems = [
     { name: 'Home', href: '/' },
     { name: 'Me', href: '/me' },
+    { name: 'DomiBlogs', href: '/domiblogs' },
     { name: 'GO-PURE', href: 'https://go-pure.ch', external: true },
     { name: 'Contact', href: '/contact' },
   ];
