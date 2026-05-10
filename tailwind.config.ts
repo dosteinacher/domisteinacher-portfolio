@@ -8,6 +8,11 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        display: ['var(--font-display)', 'sans-serif'],
+        body:    ['var(--font-body)', 'sans-serif'],
+        sans:    ['var(--font-body)', 'sans-serif'],
+      },
       colors: {
         // Core palette
         'charcoal': '#111111',   // Carbon Black — primary background

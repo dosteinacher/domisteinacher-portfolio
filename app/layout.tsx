@@ -1,20 +1,39 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Barlow_Condensed, Barlow } from "next/font/google";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const barlowCondensed = Barlow_Condensed({
+  weight: ["600", "700", "800"],
   subsets: ["latin"],
+  variable: "--font-display",
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const barlow = Barlow({
+  weight: ["300", "400", "500"],
   subsets: ["latin"],
+  variable: "--font-body",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Dominik Steinacher",
-  description: "Swiss Pole Vault Champion. CrossFit Coach at GO PURE. Senior Manager Transformational Growth & Strategy at Adobe. Building communities and pushing limits.",
+  title: {
+    default: "Dominik Steinacher",
+    template: "%s · Dominik Steinacher",
+  },
+  description:
+    "Swiss Pole Vault Champion. CrossFit Coach at GO PURE. Senior Manager Transformational Growth & Strategy at Adobe. Building communities and pushing limits.",
+  metadataBase: new URL("https://www.domisteinacher.me"),
+  openGraph: {
+    siteName: "Dominik Steinacher",
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+  },
 };
 
 export default function RootLayout({
@@ -24,10 +43,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body className={`${barlowCondensed.variable} ${barlow.variable} antialiased`}>
         {children}
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );

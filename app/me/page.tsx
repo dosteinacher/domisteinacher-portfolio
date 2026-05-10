@@ -1,5 +1,13 @@
 import Navbar from '@/components/Navbar';
 import Image from 'next/image';
+import AnimateIn from '@/components/AnimateIn';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Me',
+  description: 'Career timeline, athletic journey, and the story behind Dominik Steinacher.',
+  openGraph: { images: [{ url: '/og?title=About+Me&subtitle=Career+%C2%B7+Athletics+%C2%B7+Community' }] },
+};
 
 export default function MePage() {
   const timeline = [
@@ -20,29 +28,32 @@ export default function MePage() {
       <div className="container mx-auto px-4 py-24 max-w-5xl">
         {/* Header with Photo */}
         <div className="mb-16">
-          <div className="flex flex-col md:flex-row gap-12 items-center mb-12">
-            <div className="flex-1">
-              <h1 className="text-5xl md:text-6xl font-bold text-chalk mb-8 uppercase tracking-tight">
-                About Me
-              </h1>
-              <div className="divider-fire mb-8" />
-              <p className="text-xl text-chalk/80 leading-relaxed">
-                From Swiss Pole Vault Champion to building global sales teams and leading strategic 
-                transformation at Adobe—driven by discipline, community building, and helping others succeed.
-              </p>
+          <AnimateIn>
+            <div className="flex flex-col md:flex-row gap-12 items-center mb-12">
+              <div className="flex-1">
+                <h1 className="text-5xl md:text-6xl font-bold text-chalk mb-8 uppercase tracking-tight">
+                  About Me
+                </h1>
+                <div className="divider-fire mb-8" />
+                <p className="text-xl text-chalk/80 leading-relaxed">
+                  From Swiss Pole Vault Champion to building global sales teams and leading strategic
+                  transformation at Adobe—driven by discipline, community building, and helping others succeed.
+                </p>
+              </div>
+              <div className="relative w-80 h-80 rounded-lg overflow-hidden border border-rust/40 shadow-glow-rust">
+                <Image
+                  src="/business1.jpeg"
+                  alt="Dominik Steinacher"
+                  fill
+                  className="object-cover"
+                />
+              </div>
             </div>
-            <div className="relative w-80 h-80 rounded-lg overflow-hidden border border-rust/40 shadow-glow-rust">
-              <Image
-                src="/business1.jpeg"
-                alt="Dominik Steinacher"
-                fill
-                className="object-cover"
-              />
-            </div>
-          </div>
+          </AnimateIn>
         </div>
 
         {/* Career Timeline */}
+        <AnimateIn>
         <section className="mb-16 bg-concrete p-8 rounded-lg border-l-4 border-rust">
           <h2 className="text-3xl font-bold text-chalk mb-8 uppercase">Career Timeline</h2>
           
@@ -94,8 +105,10 @@ export default function MePage() {
             </div>
           </div>
         </section>
+        </AnimateIn>
 
         {/* Adobe Role */}
+        <AnimateIn delay={0.05}>
         <section className="mb-16 bg-concrete p-8 rounded-lg border-l-4 border-rust">
           <h2 className="text-3xl font-bold text-chalk mb-6 uppercase">Adobe · Transformational Growth & Strategy</h2>
           <p className="text-chalk/80 text-lg leading-relaxed mb-4">
@@ -111,8 +124,10 @@ export default function MePage() {
             I worked with C-level executives, developers, and everyone in between.
           </p>
         </section>
+        </AnimateIn>
 
         {/* Community Building */}
+        <AnimateIn delay={0.05}>
         <section className="mb-16 bg-concrete p-8 rounded-lg border-l-4 border-blue">
           <h2 className="text-3xl font-bold text-chalk mb-6 uppercase">Building Communities That Transform</h2>
           <p className="text-chalk/80 text-lg leading-relaxed mb-6">
@@ -140,8 +155,10 @@ export default function MePage() {
             </p>
           </div>
         </section>
+        </AnimateIn>
 
         {/* Athletic Journey with Photos */}
+        <AnimateIn delay={0.05}>
         <section className="mb-16 bg-concrete p-8 rounded-lg border-l-4 border-rust">
           <h2 className="text-3xl font-bold text-chalk mb-8 uppercase">Athletic Journey</h2>
           
@@ -199,8 +216,10 @@ export default function MePage() {
             </div>
           </div>
         </section>
+        </AnimateIn>
 
         {/* Personal Life with Photos */}
+        <AnimateIn delay={0.05}>
         <section className="bg-concrete p-8 rounded-lg border-l-4 border-rust">
           <h2 className="text-3xl font-bold text-chalk mb-6 uppercase">Life in Arlesheim</h2>
           <p className="text-chalk/80 text-lg leading-relaxed mb-6">
@@ -229,16 +248,19 @@ export default function MePage() {
             </div>
           </div>
         </section>
+        </AnimateIn>
 
         {/* CTA */}
-        <div className="mt-16 text-center">
-          <a 
-            href="/contact" 
-            className="inline-block bg-rust hover:bg-rust/90 text-chalk px-12 py-4 rounded-lg text-lg font-bold uppercase tracking-wide transition-all duration-200 hover:shadow-glow-rust"
-          >
-            Get In Touch
-          </a>
-        </div>
+        <AnimateIn delay={0.05}>
+          <div className="mt-16 text-center">
+            <a
+              href="/contact"
+              className="inline-block bg-rust hover:bg-rust/90 text-chalk px-12 py-4 rounded-lg text-lg font-bold uppercase tracking-wide transition-all duration-200 hover:shadow-glow-rust"
+            >
+              Get In Touch
+            </a>
+          </div>
+        </AnimateIn>
       </div>
     </main>
   );
