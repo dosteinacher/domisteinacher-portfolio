@@ -2,10 +2,15 @@
 
 import Image from 'next/image';
 import { motion } from 'framer-motion';
+import { useLanguage } from '@/context/LanguageContext';
+import { useT } from '@/lib/translations';
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
 export default function HeroSection() {
+  const { lang } = useLanguage();
+  const t = useT(lang);
+
   return (
     <section className="min-h-screen flex items-center justify-center px-4 py-20 pt-24 relative overflow-hidden">
 
@@ -41,7 +46,7 @@ export default function HeroSection() {
             transition={{ duration: 0.6, delay: 0.35, ease }}
             className="text-xl md:text-2xl text-steel mb-6"
           >
-            Pole Vault Champion · Coach · Digital Solutions Expert
+            {t.hero.tagline}
           </motion.p>
 
           <motion.p
@@ -50,9 +55,7 @@ export default function HeroSection() {
             transition={{ duration: 0.6, delay: 0.45, ease }}
             className="text-lg text-chalk/75 mb-8 leading-relaxed"
           >
-            I love Crossfit and push the limits. Coaching at GO PURE is amazing. At Adobe,
-            I lead strategic transformation and growth. My athletic background helps—I was
-            Swiss Pole Vault Champion in 1996.
+            {t.hero.description}
           </motion.p>
 
           <motion.div
@@ -65,7 +68,7 @@ export default function HeroSection() {
               href="mailto:dominik@steinacher-bachmann.ch"
               className="bg-rust hover:bg-rust/90 text-chalk px-8 py-3 rounded font-bold uppercase tracking-wide transition-all duration-200 hover:shadow-glow-rust"
             >
-              Get in Touch
+              {t.hero.cta}
             </a>
             <a
               href="https://go-pure.ch"
@@ -73,7 +76,7 @@ export default function HeroSection() {
               rel="noopener noreferrer"
               className="border-2 border-blue/30 hover:border-blue text-chalk hover:text-blue px-8 py-3 rounded font-bold uppercase tracking-wide transition-all duration-300 hover:bg-blue/5"
             >
-              Visit GO PURE
+              {t.hero.ctaSecondary}
             </a>
           </motion.div>
         </div>

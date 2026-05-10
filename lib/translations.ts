@@ -1,0 +1,239 @@
+import type { Lang } from '@/context/LanguageContext';
+
+const translations = {
+  en: {
+    nav: {
+      home: 'Home',
+      me: 'Me',
+      blogs: 'DomiBlogs',
+      gopure: 'GO-PURE',
+      contact: 'Contact',
+    },
+    hero: {
+      tagline: 'Pole Vault Champion · Coach · Digital Solutions Expert',
+      description:
+        'I love Crossfit and push the limits. Coaching at GO PURE is amazing. At Adobe, I lead strategic transformation and growth. My athletic background helps—I was Swiss Pole Vault Champion in 1996.',
+      cta: 'Get in Touch',
+      ctaSecondary: 'Visit GO PURE',
+    },
+    home: {
+      aboutTitle: 'About Me',
+      athleticTitle: 'Athletic Background',
+      athleticP1:
+        'Swiss Pole Vault Champion in 1996. The discipline, focus, and dedication required in competitive athletics shaped my approach to everything I do.',
+      athleticP2:
+        "Today, I'm deep in Crossfit—training myself and coaching at GO PURE. Helping others find their strength and break through limits.",
+      professionalTitle: 'Professional Life',
+      professionalP1: 'I lead strategic transformation at Adobe—growth tactics, not technology.',
+      professionalP2:
+        'Life in Arlesheim includes two kids, regular training, and demanding work. I make it work.',
+      projectsTitle: 'Projects',
+      featuredLabel: 'Featured Project',
+      gopureDesc:
+        'A comprehensive workout management platform. Built for the community, by the community. Features workout scheduling, availability polls, user registration, and a library of 346+ workout templates.',
+      visitSite: 'Visit Site →',
+      contactTitle: 'Get In Touch',
+      footer: 'All rights reserved.',
+    },
+    me: {
+      title: 'About Me',
+      intro:
+        'From Swiss Pole Vault Champion to building global sales teams and leading strategic transformation at Adobe—driven by discipline, community building, and helping others succeed.',
+      careerTitle: 'Career Timeline',
+      adobeTitle: 'Adobe · Transformational Growth & Strategy',
+      adobeP1:
+        'I joined Adobe in September 2022. My role is Senior Manager of Transformational Growth & Strategy on the Blackbird team within AEM Engineering. I lead strategic transformation—growth tactics, not technology. I bring 20+ years of commercial leadership into engineering culture. Customer experience. Relationship building. Stakeholder management. All the sales leader skills that help communities thrive.',
+      adobeP2:
+        'Before Adobe, I opened markets across the UK, Eastern Europe, UAE, and APAC. I took Magnolia International from 50 to 300 customers as Chief Commercial Officer. I built global sales teams. I worked with C-level executives, developers, and everyone in between.',
+      communityTitle: 'Building Communities That Transform',
+      communityP1: 'I build communities that break silos and drive transformation.',
+      aiCommunityTitle: 'AI Community of Communities · Adobe Basel',
+      aiCommunityP1:
+        "I lead the AI Community of Communities at Adobe Basel. Since July 2024, we've grown from 50 to 900+ members with 100+ regular attendees. We connect AI teams across AEM, AEP, Document Cloud, and Firefly. Our mission is simple: break silos, share openly, learn together, move fast.",
+      aiCommunityP2:
+        'What makes this work? Hyper-transparency. Community-led formats. Real use cases over theory. We run weekly Show & Tell sessions, document everything, and share failures openly. No gatekeeping. No top-down mandates. Just engineers solving real problems together.',
+      quote:
+        '"My leadership philosophy is straightforward: create trust. Build safe harbors where people can fail fast and succeed faster. That\'s how you scale."',
+      athleticTitle: 'Athletic Journey',
+      poleVaultTitle: '🏆 Swiss Pole Vault Champion',
+      poleVaultYear: '1996',
+      poleVaultDesc:
+        'The discipline, focus, and dedication required in competitive athletics shaped my approach to everything I do.',
+      crossfitTitle: '💪 Crossfit Athlete & Coach',
+      crossfitPeriod: 'GO PURE · Present',
+      crossfitDesc:
+        "Today, I'm deep in Crossfit—training myself and coaching at GO PURE. Helping others find their strength and break through limits.",
+      lifeTitle: 'Life in Arlesheim',
+      lifeDesc: 'I live in Arlesheim near Basel with my wife and two kids (Liv, 15; Finn, 17).',
+      cta: 'Get In Touch',
+      education: 'University of Basel',
+      degree: 'Master of Arts in Economics (lic. rer. pol)',
+    },
+    contact: {
+      title: 'Get In Touch',
+      emailLabel: 'Email',
+      addressLabel: 'Address',
+      connectLabel: 'Connect',
+    },
+    blogs: {
+      description:
+        'Insights on leadership, transformation, community building, and the intersection of athletics and business.',
+      readMore: 'Read More',
+      by: 'by',
+      minRead: 'min read',
+      posts: [
+        {
+          slug: 'fitness-app-no-code',
+          title: "I Built a Full Fitness App. I've Never Written a Single Line of Code.",
+          date: 'May 10, 2026',
+          excerpt:
+            'My friend built a training box in his basement. I helped with the equipment, became the coach, and then built a full fitness platform — without knowing how to code.',
+          readTime: '5 min read',
+        },
+        {
+          slug: 'hybrid-sales-strategies',
+          title: 'The Rise of Hybrid Sales Strategies: Navigating the Future of B2B Software Sales',
+          date: 'Jan 23, 2026',
+          excerpt:
+            'The B2B software industry is evolving beyond traditional sales-led approaches. Discover how hybrid models combine PLG efficiency with SLG relationship-building.',
+          readTime: '8 min read',
+        },
+        {
+          slug: 'winning-the-game',
+          title:
+            'Winning the Game: Lessons from Sport, CrossFit, and Pole Vaulting in PLG, Sales, and Culture Change',
+          date: 'Feb 7, 2025',
+          excerpt:
+            'Success, whether in sports, business, or personal growth, is built on resilience, adaptability, and execution.',
+          readTime: '5 min read',
+        },
+      ],
+    },
+    blog: {
+      backToBlogs: '← Back to DomiBlogs',
+      backToAll: '← Back to All Posts',
+      by: 'by',
+    },
+  },
+
+  de: {
+    nav: {
+      home: 'Start',
+      me: 'Über mich',
+      blogs: 'DomiBlogs',
+      gopure: 'GO-PURE',
+      contact: 'Kontakt',
+    },
+    hero: {
+      tagline: 'Stabhochsprung-Champion · Coach · Experte für digitale Lösungen',
+      description:
+        'Ich liebe Crossfit und gehe an meine Grenzen. Coaching bei GO PURE ist grossartig. Bei Adobe leite ich strategische Transformation und Wachstum. Mein sportlicher Hintergrund hilft dabei – ich war 1996 Schweizer Stabhochsprung-Champion.',
+      cta: 'Kontakt aufnehmen',
+      ctaSecondary: 'GO PURE besuchen',
+    },
+    home: {
+      aboutTitle: 'Über mich',
+      athleticTitle: 'Sportlicher Hintergrund',
+      athleticP1:
+        'Schweizer Stabhochsprung-Champion 1996. Die Disziplin, der Fokus und die Hingabe im Leistungssport haben meinen Ansatz in allem geprägt, was ich tue.',
+      athleticP2:
+        'Heute bin ich tief im Crossfit – ich trainiere selbst und coache bei GO PURE. Ich helfe anderen, ihre Stärke zu finden und Grenzen zu überwinden.',
+      professionalTitle: 'Berufsleben',
+      professionalP1:
+        'Bei Adobe leite ich strategische Transformation – Wachstumstaktiken, keine Technologie.',
+      professionalP2:
+        'Das Leben in Arlesheim umfasst zwei Kinder, regelmässiges Training und anspruchsvolle Arbeit. Ich bringe alles unter einen Hut.',
+      projectsTitle: 'Projekte',
+      featuredLabel: 'Hauptprojekt',
+      gopureDesc:
+        'Eine umfassende Workout-Management-Plattform. Für die Community gebaut, von der Community. Mit Workout-Planung, Verfügbarkeitsumfragen, Benutzerregistrierung und einer Bibliothek mit über 346 Workout-Vorlagen.',
+      visitSite: 'Website besuchen →',
+      contactTitle: 'Kontakt aufnehmen',
+      footer: 'Alle Rechte vorbehalten.',
+    },
+    me: {
+      title: 'Über mich',
+      intro:
+        'Vom Schweizer Stabhochsprung-Champion zum Aufbau globaler Vertriebsteams und zur Leitung strategischer Transformation bei Adobe – getrieben von Disziplin, Community-Aufbau und dem Helfen anderer.',
+      careerTitle: 'Karriere',
+      adobeTitle: 'Adobe · Transformationswachstum & Strategie',
+      adobeP1:
+        'Ich bin im September 2022 zu Adobe gestossen. Meine Rolle ist Senior Manager für Transformationswachstum & Strategie im Blackbird-Team innerhalb von AEM Engineering. Ich leite strategische Transformation – Wachstumstaktiken, keine Technologie. Ich bringe über 20 Jahre kommerzielle Führungserfahrung in die Engineering-Kultur ein. Customer Experience. Beziehungsaufbau. Stakeholder-Management. All die Fähigkeiten eines Vertriebsleiters, die Communities zum Erfolg führen.',
+      adobeP2:
+        'Vor Adobe habe ich Märkte in Grossbritannien, Osteuropa, den Vereinigten Arabischen Emiraten und dem asiatisch-pazifischen Raum erschlossen. Ich habe Magnolia International als Chief Commercial Officer von 50 auf 300 Kunden geführt. Ich habe globale Vertriebsteams aufgebaut. Ich habe mit C-Level-Führungskräften, Entwicklern und allen dazwischen zusammengearbeitet.',
+      communityTitle: 'Communities aufbauen, die transformieren',
+      communityP1: 'Ich baue Communities auf, die Silos aufbrechen und Transformation vorantreiben.',
+      aiCommunityTitle: 'AI Community of Communities · Adobe Basel',
+      aiCommunityP1:
+        'Ich leite die AI Community of Communities bei Adobe Basel. Seit Juli 2024 sind wir von 50 auf über 900 Mitglieder mit über 100 regelmässigen Teilnehmern gewachsen. Wir verbinden KI-Teams in AEM, AEP, Document Cloud und Firefly. Unsere Mission ist einfach: Silos aufbrechen, offen teilen, gemeinsam lernen, schnell handeln.',
+      aiCommunityP2:
+        'Was macht das möglich? Hyper-Transparenz. Community-geführte Formate. Reale Anwendungsfälle statt Theorie. Wir führen wöchentliche Show-&-Tell-Sessions durch, dokumentieren alles und teilen Misserfolge offen. Kein Gatekeeping. Keine Top-down-Vorgaben. Nur Ingenieure, die gemeinsam echte Probleme lösen.',
+      quote:
+        '„Meine Führungsphilosophie ist klar: Vertrauen schaffen. Sichere Häfen bauen, wo Menschen schnell scheitern und noch schneller Erfolg haben können. So skaliert man."',
+      athleticTitle: 'Sportliche Karriere',
+      poleVaultTitle: '🏆 Schweizer Stabhochsprung-Champion',
+      poleVaultYear: '1996',
+      poleVaultDesc:
+        'Die Disziplin, der Fokus und die Hingabe im Leistungssport haben meinen Ansatz in allem geprägt, was ich tue.',
+      crossfitTitle: '💪 Crossfit-Athlet & Coach',
+      crossfitPeriod: 'GO PURE · Aktuell',
+      crossfitDesc:
+        'Heute bin ich tief im Crossfit – ich trainiere selbst und coache bei GO PURE. Ich helfe anderen, ihre Stärke zu finden und Grenzen zu überwinden.',
+      lifeTitle: 'Leben in Arlesheim',
+      lifeDesc: 'Ich lebe in Arlesheim bei Basel mit meiner Frau und zwei Kindern (Liv, 15; Finn, 17).',
+      cta: 'Kontakt aufnehmen',
+      education: 'Universität Basel',
+      degree: 'Master of Arts in Wirtschaftswissenschaften (lic. rer. pol)',
+    },
+    contact: {
+      title: 'Kontakt',
+      emailLabel: 'E-Mail',
+      addressLabel: 'Adresse',
+      connectLabel: 'Verbinden',
+    },
+    blogs: {
+      description:
+        'Einblicke in Führung, Transformation, Community-Aufbau und die Verbindung von Sport und Business.',
+      readMore: 'Mehr lesen',
+      by: 'von',
+      minRead: 'Min. Lesezeit',
+      posts: [
+        {
+          slug: 'fitness-app-no-code',
+          title: 'Ich habe eine komplette Fitness-App gebaut. Ich habe noch nie eine einzige Zeile Code geschrieben.',
+          date: '10. Mai 2026',
+          excerpt:
+            'Mein Freund baute eine Trainingsbox in seinem Keller. Ich half mit der Ausrüstung, wurde der Coach und baute dann eine vollständige Fitness-Plattform – ohne Code schreiben zu können.',
+          readTime: '5 Min. Lesezeit',
+        },
+        {
+          slug: 'hybrid-sales-strategies',
+          title:
+            'Der Aufstieg hybrider Vertriebsstrategien: Die Zukunft des B2B-Software-Vertriebs navigieren',
+          date: '23. Jan. 2026',
+          excerpt:
+            'Die B2B-Software-Branche entwickelt sich über traditionelle vertriebsgeführte Ansätze hinaus. Entdecke, wie hybride Modelle die Effizienz von PLG mit dem Beziehungsaufbau von SLG kombinieren.',
+          readTime: '8 Min. Lesezeit',
+        },
+        {
+          slug: 'winning-the-game',
+          title:
+            'Das Spiel gewinnen: Lektionen aus Sport, CrossFit und Stabhochsprung für PLG, Vertrieb und Kulturwandel',
+          date: '7. Feb. 2025',
+          excerpt:
+            'Erfolg – ob im Sport, Business oder persönlichem Wachstum – beruht auf Belastbarkeit, Anpassungsfähigkeit und Umsetzung.',
+          readTime: '5 Min. Lesezeit',
+        },
+      ],
+    },
+    blog: {
+      backToBlogs: '← Zurück zu DomiBlogs',
+      backToAll: '← Zurück zu allen Beiträgen',
+      by: 'von',
+    },
+  },
+} as const;
+
+export function useT(lang: Lang) {
+  return translations[lang];
+}

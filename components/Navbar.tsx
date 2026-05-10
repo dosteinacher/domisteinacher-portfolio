@@ -4,19 +4,23 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-
-const navItems = [
-  { name: 'Home',      href: '/' },
-  { name: 'Me',        href: '/me' },
-  { name: 'DomiBlogs', href: '/domiblogs' },
-  { name: 'GO-PURE',   href: 'https://go-pure.ch', external: true },
-  { name: 'Contact',   href: '/contact' },
-];
+import { useLanguage } from '@/context/LanguageContext';
+import { useT } from '@/lib/translations';
 
 export default function Navbar() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const { lang, toggle } = useLanguage();
+  const t = useT(lang);
+
+  const navItems = [
+    { name: t.nav.home,    href: '/' },
+    { name: t.nav.me,      href: '/me' },
+    { name: t.nav.blogs,   href: '/domiblogs' },
+    { name: t.nav.gopure,  href: 'https://go-pure.ch', external: true },
+    { name: t.nav.contact, href: '/contact' },
+  ];
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -24,10 +28,8 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  // Close mobile menu on route change
   useEffect(() => { setOpen(false); }, [pathname]);
 
-  // Lock body scroll when mobile menu is open
   useEffect(() => {
     document.body.style.overflow = open ? 'hidden' : '';
     return () => { document.body.style.overflow = ''; };
@@ -54,13 +56,13 @@ export default function Navbar() {
             </Link>
 
             {/* Desktop nav */}
-            <div className="hidden md:flex gap-8">
+            <div className="hidden md:flex items-center gap-8">
               {navItems.map((item) => {
                 const isActive = pathname === item.href;
                 if (item.external) {
                   return (
                     <a
-                      key={item.name}
+                      key={item.href}
                       href={item.href}
                       target="_blank"
                       rel="noopener noreferrer"
@@ -72,7 +74,7 @@ export default function Navbar() {
                 }
                 return (
                   <Link
-                    key={item.name}
+                    key={item.href}
                     href={item.href}
                     className={`transition-colors duration-200 font-semibold uppercase text-sm tracking-wide pb-0.5 ${
                       isActive
@@ -84,6 +86,17 @@ export default function Navbar() {
                   </Link>
                 );
               })}
+
+              {/* Language toggle */}
+              <button
+                onClick={toggle}
+                className="flex items-center gap-1 text-xs font-bold uppercase tracking-widest border border-white/20 rounded px-2.5 py-1 text-steel hover:text-chalk hover:border-white/40 transition-all duration-200"
+                aria-label="Switch language"
+              >
+                <span className={lang === 'en' ? 'text-chalk' : 'text-steel/50'}>EN</span>
+                <span className="text-white/20">|</span>
+                <span className={lang === 'de' ? 'text-chalk' : 'text-steel/50'}>DE</span>
+              </button>
             </div>
 
             {/* Hamburger — mobile only */}
@@ -123,7 +136,6 @@ export default function Navbar() {
             transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
             className="fixed inset-0 z-40 bg-charcoal flex flex-col items-center justify-center gap-2"
           >
-            {/* Gradient atmosphere in overlay */}
             <div className="absolute top-0 left-0 w-[600px] h-[600px] bg-rust/[0.05] rounded-full blur-[120px] pointer-events-none -translate-x-1/2 -translate-y-1/2" />
 
             {navItems.map((item, i) => {
@@ -135,7 +147,7 @@ export default function Navbar() {
 
               return (
                 <motion.div
-                  key={item.name}
+                  key={item.href}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 10 }}
@@ -153,6 +165,23 @@ export default function Navbar() {
                 </motion.div>
               );
             })}
+
+            {/* Mobile language toggle */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 10 }}
+              transition={{ delay: 0.05 + navItems.length * 0.07, duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <button
+                onClick={toggle}
+                className="flex items-center gap-2 text-xl font-bold uppercase tracking-widest py-3 px-6 border border-white/20 rounded-lg text-steel hover:text-chalk hover:border-white/40 transition-all duration-200 mt-4"
+              >
+                <span className={lang === 'en' ? 'text-orange' : 'text-steel/50'}>EN</span>
+                <span className="text-white/20">|</span>
+                <span className={lang === 'de' ? 'text-orange' : 'text-steel/50'}>DE</span>
+              </button>
+            </motion.div>
 
             <motion.div
               initial={{ opacity: 0 }}
