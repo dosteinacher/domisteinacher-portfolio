@@ -184,7 +184,7 @@ function WinningTheGameContent({ post }: { post: any }) {
 
         {/* Back Button */}
         <div className="mt-12 pt-8 border-t border-steel/30">
-          <Link href="/domiblogs" className="inline-block bg-rust hover:bg-red-700 text-chalk px-8 py-3 rounded-lg font-bold transition">
+          <Link href="/domiblogs" className="inline-block bg-rust hover:bg-rust/90 text-chalk px-8 py-3 rounded-lg font-bold transition-all duration-200 hover:shadow-glow-rust">
             ← Back to All Posts
           </Link>
         </div>
@@ -282,8 +282,8 @@ function HybridSalesStrategiesContent({ post }: { post: any }) {
           </section>
 
           {/* Excurse Section with Image */}
-          <section className="mb-8 bg-concrete/50 p-8 rounded-lg border-l-4 border-rust">
-            <h3 className="text-2xl font-bold text-rust mb-4">Growth Strategies</h3>
+          <section className="mb-8 bg-concrete/60 p-8 rounded-lg border-l-4 border-blue">
+            <h3 className="text-2xl font-bold text-blue mb-4">Growth Strategies</h3>
             
             <div className="relative h-96 w-full rounded-lg overflow-hidden my-6">
               <Image
@@ -366,7 +366,7 @@ function HybridSalesStrategiesContent({ post }: { post: any }) {
 
         {/* Back Button */}
         <div className="mt-12 pt-8 border-t border-steel/30">
-          <Link href="/domiblogs" className="inline-block bg-rust hover:bg-red-700 text-chalk px-8 py-3 rounded-lg font-bold transition">
+          <Link href="/domiblogs" className="inline-block bg-rust hover:bg-rust/90 text-chalk px-8 py-3 rounded-lg font-bold transition-all duration-200 hover:shadow-glow-rust">
             ← Back to All Posts
           </Link>
         </div>

@@ -25,13 +25,13 @@ export default function MePage() {
               <h1 className="text-5xl md:text-6xl font-bold text-chalk mb-8 uppercase tracking-tight">
                 About Me
               </h1>
-              <div className="h-1 w-24 bg-rust mb-8"></div>
+              <div className="divider-fire mb-8" />
               <p className="text-xl text-chalk/80 leading-relaxed">
                 From Swiss Pole Vault Champion to building global sales teams and leading strategic 
                 transformation at Adobe—driven by discipline, community building, and helping others succeed.
               </p>
             </div>
-            <div className="relative w-80 h-80 rounded-lg overflow-hidden border-4 border-rust shadow-2xl">
+            <div className="relative w-80 h-80 rounded-lg overflow-hidden border border-rust/40 shadow-glow-rust">
               <Image
                 src="/business1.jpeg"
                 alt="Dominik Steinacher"
@@ -113,14 +113,14 @@ export default function MePage() {
         </section>
 
         {/* Community Building */}
-        <section className="mb-16 bg-concrete p-8 rounded-lg border-l-4 border-steel">
+        <section className="mb-16 bg-concrete p-8 rounded-lg border-l-4 border-blue">
           <h2 className="text-3xl font-bold text-chalk mb-6 uppercase">Building Communities That Transform</h2>
           <p className="text-chalk/80 text-lg leading-relaxed mb-6">
             I build communities that break silos and drive transformation.
           </p>
           
           <div className="bg-charcoal p-6 rounded-lg mb-6">
-            <h3 className="text-2xl font-bold text-rust mb-4">AI Community of Communities · Adobe Basel</h3>
+            <h3 className="text-2xl font-bold text-blue mb-4">AI Community of Communities · Adobe Basel</h3>
             <p className="text-chalk/80 text-lg leading-relaxed mb-4">
               I lead the AI Community of Communities at Adobe Basel. Since July 2024, we've grown from 50 to 
               900+ members with 100+ regular attendees. We connect AI teams across AEM, AEP, Document Cloud, 
@@ -148,7 +148,7 @@ export default function MePage() {
           <div className="grid md:grid-cols-2 gap-8 mb-8">
             {/* Pole Vault */}
             <div>
-              <div className="relative h-96 rounded-lg overflow-hidden mb-4 border-4 border-rust bg-charcoal flex items-center justify-center">
+              <div className="relative h-96 rounded-lg overflow-hidden mb-4 border border-rust/40 shadow-glow-rust bg-charcoal flex items-center justify-center">
                 <Image
                   src="/pole.JPG"
                   alt="Pole Vault Champion 1996"
@@ -166,7 +166,7 @@ export default function MePage() {
 
             {/* Crossfit */}
             <div>
-              <div className="relative h-96 rounded-lg overflow-hidden mb-4 border-4 border-steel bg-charcoal flex items-center justify-center">
+              <div className="relative h-96 rounded-lg overflow-hidden mb-4 border border-white/[0.08] shadow-card bg-charcoal flex items-center justify-center">
                 <Image
                   src="/Cross1.jpg"
                   alt="Crossfit Training"
@@ -234,7 +234,7 @@ export default function MePage() {
         <div className="mt-16 text-center">
           <a 
             href="/contact" 
-            className="inline-block bg-rust hover:bg-red-700 text-chalk px-12 py-4 rounded-lg text-lg font-bold uppercase tracking-wide transition shadow-lg"
+            className="inline-block bg-rust hover:bg-rust/90 text-chalk px-12 py-4 rounded-lg text-lg font-bold uppercase tracking-wide transition-all duration-200 hover:shadow-glow-rust"
           >
             Get In Touch
           </a>

@@ -33,7 +33,7 @@ export default function DomiBlogsPage() {
         <h1 className="text-5xl md:text-6xl font-bold text-chalk mb-4 uppercase tracking-tight">
           DomiBlogs
         </h1>
-        <div className="h-1 w-24 bg-rust mb-12"></div>
+        <div className="divider-fire mb-12" />
         
         <p className="text-xl text-steel mb-12 leading-relaxed max-w-3xl">
           Insights on leadership, transformation, community building, and the intersection 
@@ -48,7 +48,7 @@ export default function DomiBlogsPage() {
               href={`/domiblogs/${post.slug}`}
               className="block group"
             >
-              <article className="bg-concrete rounded-lg border-l-4 border-steel hover:border-rust transition-all duration-300 overflow-hidden">
+              <article className="bg-concrete rounded-lg border-l-4 border-steel/30 hover:border-rust hover:shadow-glow-rust transition-all duration-300 overflow-hidden">
                 {/* Cover Image */}
                 {post.coverImage && (
                   <div className="relative h-64 w-full overflow-hidden">
@@ -78,7 +78,7 @@ export default function DomiBlogsPage() {
                     {post.excerpt}
                   </p>
                   
-                  <div className="flex items-center gap-2 text-rust font-semibold">
+                  <div className="flex items-center gap-2 text-rust group-hover:text-orange font-semibold transition-colors duration-200">
                     Read More
                     <svg className="w-5 h-5 group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>

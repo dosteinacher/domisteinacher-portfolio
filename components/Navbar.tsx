@@ -7,27 +7,31 @@ export default function Navbar() {
   const pathname = usePathname();
 
   const navItems = [
-    { name: 'Home', href: '/' },
-    { name: 'Me', href: '/me' },
-    { name: 'DomiBlogs', href: '/domiblogs' },
-    { name: 'GO-PURE', href: 'https://go-pure.ch', external: true },
-    { name: 'Contact', href: '/contact' },
+    { name: 'Home',       href: '/' },
+    { name: 'Me',         href: '/me' },
+    { name: 'DomiBlogs',  href: '/domiblogs' },
+    { name: 'GO-PURE',    href: 'https://go-pure.ch', external: true },
+    { name: 'Contact',    href: '/contact' },
   ];
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-charcoal/95 backdrop-blur-sm border-b border-steel/20">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-charcoal/98 backdrop-blur-md border-b border-white/[0.06]">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
-          {/* Logo/Name */}
-          <Link href="/" className="text-xl font-bold text-chalk hover:text-rust transition">
+
+          {/* Logo */}
+          <Link
+            href="/"
+            className="text-xl font-bold text-chalk hover:text-orange transition-colors duration-200 tracking-widest"
+          >
             DS
           </Link>
 
-          {/* Nav Links */}
+          {/* Nav links */}
           <div className="flex gap-8">
             {navItems.map((item) => {
               const isActive = pathname === item.href;
-              
+
               if (item.external) {
                 return (
                   <a
@@ -35,7 +39,7 @@ export default function Navbar() {
                     href={item.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-chalk hover:text-rust transition font-semibold uppercase text-sm tracking-wide"
+                    className="text-steel hover:text-chalk transition-colors duration-200 font-semibold uppercase text-sm tracking-wide"
                   >
                     {item.name}
                   </a>
@@ -46,10 +50,10 @@ export default function Navbar() {
                 <Link
                   key={item.name}
                   href={item.href}
-                  className={`transition font-semibold uppercase text-sm tracking-wide ${
+                  className={`transition-colors duration-200 font-semibold uppercase text-sm tracking-wide pb-0.5 ${
                     isActive
-                      ? 'text-rust border-b-2 border-rust'
-                      : 'text-chalk hover:text-rust'
+                      ? 'text-chalk border-b-2 border-orange'
+                      : 'text-steel hover:text-chalk'
                   }`}
                 >
                   {item.name}
@@ -57,6 +61,7 @@ export default function Navbar() {
               );
             })}
           </div>
+
         </div>
       </div>
     </nav>
