@@ -4,6 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useLanguage } from '@/context/LanguageContext';
 import { useT } from '@/lib/translations';
+import { getBlurDataURL } from '@/lib/blurPlaceholders';
 
 const post = {
   coverImage: '/blogs/Blog2a.jpg',
@@ -35,7 +36,14 @@ export default function HybridSalesPost() {
         </div>
 
         <div className="relative h-96 w-full rounded-lg overflow-hidden mb-8">
-          <Image src={post.coverImage} alt={postMeta.title} fill className="object-cover" />
+          <Image
+            src={post.coverImage}
+            alt={postMeta.title}
+            fill
+            placeholder="blur"
+            blurDataURL={getBlurDataURL(post.coverImage)}
+            className="object-cover"
+          />
         </div>
       </div>
 
@@ -108,7 +116,14 @@ function HybridSalesEN() {
       <section className="mb-8 bg-concrete/50 p-8 rounded-lg border-l-4 border-rust">
         <h3 className="text-2xl font-bold text-rust mb-4">Growth Strategies</h3>
         <div className="relative h-96 w-full rounded-lg overflow-hidden my-6">
-          <Image src="/blogs/Picture2b.jpg" alt="Growth Strategies Visualization" fill className="object-cover" />
+          <Image
+            src="/blogs/Picture2b.jpg"
+            alt="Growth Strategies Visualization"
+            fill
+            placeholder="blur"
+            blurDataURL={getBlurDataURL('/blogs/Picture2b.jpg')}
+            className="object-cover"
+          />
         </div>
       </section>
 
@@ -239,7 +254,14 @@ function HybridSalesDE() {
       <section className="mb-8 bg-concrete/50 p-8 rounded-lg border-l-4 border-rust">
         <h3 className="text-2xl font-bold text-rust mb-4">Wachstumsstrategien</h3>
         <div className="relative h-96 w-full rounded-lg overflow-hidden my-6">
-          <Image src="/blogs/Picture2b.jpg" alt="Visualisierung der Wachstumsstrategien" fill className="object-cover" />
+          <Image
+            src="/blogs/Picture2b.jpg"
+            alt="Visualisierung der Wachstumsstrategien"
+            fill
+            placeholder="blur"
+            blurDataURL={getBlurDataURL('/blogs/Picture2b.jpg')}
+            className="object-cover"
+          />
         </div>
       </section>
 

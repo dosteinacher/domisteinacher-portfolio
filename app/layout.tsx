@@ -3,6 +3,8 @@ import { Barlow_Condensed, Barlow } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { LanguageProvider } from "@/context/LanguageContext";
+import SmoothScroll from "@/components/SmoothScroll";
+import GrainOverlay from "@/components/GrainOverlay";
 import "./globals.css";
 
 const barlowCondensed = Barlow_Condensed({
@@ -46,8 +48,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${barlowCondensed.variable} ${barlow.variable} antialiased`}>
         <LanguageProvider>
-          {children}
+          <SmoothScroll>{children}</SmoothScroll>
         </LanguageProvider>
+        <GrainOverlay />
         <Analytics />
         <SpeedInsights />
       </body>

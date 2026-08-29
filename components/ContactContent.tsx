@@ -2,6 +2,7 @@
 
 import Navbar from '@/components/Navbar';
 import AnimateIn from '@/components/AnimateIn';
+import MagneticButton from '@/components/MagneticButton';
 import { useLanguage } from '@/context/LanguageContext';
 import { useT } from '@/lib/translations';
 
@@ -49,18 +50,18 @@ export default function ContactContent() {
           <div className="grid md:grid-cols-2 gap-12 mb-16">
             <div className="bg-concrete p-8 rounded-lg border-l-4 border-rust">
               <h2 className="text-xl font-bold text-rust mb-4 uppercase">{t.contact.emailLabel}</h2>
-              <a
+              <MagneticButton
                 href="mailto:dominik@steinacher-bachmann.ch"
                 className="text-chalk text-lg hover:text-rust transition-colors duration-200 block mb-2"
               >
                 dominik@steinacher-bachmann.ch
-              </a>
-              <a
+              </MagneticButton>
+              <MagneticButton
                 href="mailto:nigglus@gmail.com"
                 className="text-chalk/70 hover:text-rust transition-colors duration-200 block"
               >
                 nigglus@gmail.com
-              </a>
+              </MagneticButton>
             </div>
 
             <div className="bg-concrete p-8 rounded-lg border-l-4 border-blue">
@@ -68,7 +69,7 @@ export default function ContactContent() {
               <p className="text-chalk text-lg">
                 Altenmattweg 13<br />
                 4144 Arlesheim<br />
-                Switzerland 🇨🇭
+                Switzerland
               </p>
             </div>
           </div>

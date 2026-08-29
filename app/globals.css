@@ -53,6 +53,26 @@ h1, h2, h3, h4, h5, h6 {
     width: 6rem;
     background: linear-gradient(90deg, #C1121F 0%, #FF6B35 40%, transparent 100%);
   }
+
+  /* Hides the scrollbar on horizontally-dragged strips (MediaReel) while
+     keeping the element scrollable via touch/drag/wheel. */
+  .scrollbar-hide {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* ─── Reduced motion ─────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 /* ─── Scrollbar ──────────────────────────────────────────────── */
@@ -69,4 +89,15 @@ h1, h2, h3, h4, h5, h6 {
 ::selection {
   background: rgba(193, 18, 31, 0.35);
   color: var(--chalk);
+}
+
+/* ─── View Transitions (native page-nav crossfade) ──────────────
+   Feature-detected in TransitionLink.tsx; browsers without support simply
+   never run this. A quick, brand-toned crossfade — no slide, keeps it calm
+   rather than gimmicky. Respects prefers-reduced-motion via the rule above,
+   since these are ordinary CSS animations under the hood. */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.35s;
+  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
 }
