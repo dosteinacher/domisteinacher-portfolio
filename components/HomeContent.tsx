@@ -12,10 +12,10 @@ import { useT } from '@/lib/translations';
 import { getBlurDataURL } from '@/lib/blurPlaceholders';
 
 const trainingReel: MediaReelItem[] = [
-  { type: 'video', src: '/videos/reel-pullup.mp4', poster: '/videos/posters/reel-pullup.jpg', caption: 'Pull-Ups' },
-  { type: 'video', src: '/videos/reel-overhead-press.mp4', poster: '/videos/posters/reel-overhead-press.jpg', caption: 'Overhead Press' },
-  { type: 'video', src: '/videos/reel-handstand-pushup.mp4', poster: '/videos/posters/reel-handstand-pushup.jpg', caption: 'Handstand Push-Up' },
-  { type: 'video', src: '/videos/reel-barbell-jerk.mp4', poster: '/videos/posters/reel-barbell-jerk.jpg', caption: 'Barbell Jerk' },
+  { type: 'video', src: '/videos/reel-pullup.mp4', poster: '/videos/posters/reel-pullup.jpg', caption: 'BMU Complex' },
+  { type: 'video', src: '/videos/reel-overhead-press.mp4', poster: '/videos/posters/reel-overhead-press.jpg', caption: 'Alternating DB Snatch' },
+  { type: 'video', src: '/videos/reel-handstand-pushup.mp4', poster: '/videos/posters/reel-handstand-pushup.jpg', caption: 'Handstand Push-Ups' },
+  { type: 'video', src: '/videos/reel-barbell-jerk.mp4', poster: '/videos/posters/reel-barbell-jerk.jpg', caption: 'DB Thrusters' },
 ];
 
 const socialLinks = [
