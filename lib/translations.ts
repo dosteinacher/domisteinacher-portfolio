@@ -27,6 +27,8 @@ const translations = {
       professionalP1: 'I lead strategic transformation at Adobe—growth tactics, not technology.',
       professionalP2:
         'Life in Arlesheim includes two kids, regular training, and demanding work. I make it work.',
+      trainingTitle: 'Training In Motion',
+      trainingDesc: 'A few reps, straight off the floor at GO PURE.',
       projectsTitle: 'Projects',
       featuredLabel: 'Featured Project',
       gopureDesc:
@@ -40,6 +42,12 @@ const translations = {
       intro:
         'From Swiss Pole Vault Champion to building global sales teams and leading strategic transformation at Adobe—driven by discipline, community building, and helping others succeed.',
       careerTitle: 'Career Timeline',
+      statsTitle: 'By The Numbers',
+      statYears: 'Years of Commercial Leadership',
+      statCommunity: 'AI Community Members',
+      statTemplates: 'GO PURE Workout Templates',
+      statGrowth: 'Customer Growth at Magnolia',
+      statChampion: 'Swiss Pole Vault Champion',
       adobeTitle: 'Adobe · Transformational Growth & Strategy',
       adobeP1:
         'I joined Adobe in September 2022. My role is Senior Manager of Transformational Growth & Strategy on the Blackbird team within AEM Engineering. I lead strategic transformation—growth tactics, not technology. I bring 20+ years of commercial leadership into engineering culture. Customer experience. Relationship building. Stakeholder management. All the sales leader skills that help communities thrive.',
@@ -55,11 +63,11 @@ const translations = {
       quote:
         '"My leadership philosophy is straightforward: create trust. Build safe harbors where people can fail fast and succeed faster. That\'s how you scale."',
       athleticTitle: 'Athletic Journey',
-      poleVaultTitle: '🏆 Swiss Pole Vault Champion',
+      poleVaultTitle: 'Swiss Pole Vault Champion',
       poleVaultYear: '1996',
       poleVaultDesc:
         'The discipline, focus, and dedication required in competitive athletics shaped my approach to everything I do.',
-      crossfitTitle: '💪 Crossfit Athlete & Coach',
+      crossfitTitle: 'Crossfit Athlete & Coach',
       crossfitPeriod: 'GO PURE · Present',
       crossfitDesc:
         "Today, I'm deep in Crossfit—training myself and coaching at GO PURE. Helping others find their strength and break through limits.",
@@ -143,6 +151,8 @@ const translations = {
         'Bei Adobe leite ich strategische Transformation – Wachstumstaktiken, keine Technologie.',
       professionalP2:
         'Das Leben in Arlesheim umfasst zwei Kinder, regelmässiges Training und anspruchsvolle Arbeit. Ich bringe alles unter einen Hut.',
+      trainingTitle: 'Training in Bewegung',
+      trainingDesc: 'Ein paar Reps, direkt von der Trainingsfläche bei GO PURE.',
       projectsTitle: 'Projekte',
       featuredLabel: 'Hauptprojekt',
       gopureDesc:
@@ -156,6 +166,12 @@ const translations = {
       intro:
         'Vom Schweizer Stabhochsprung-Champion zum Aufbau globaler Vertriebsteams und zur Leitung strategischer Transformation bei Adobe – getrieben von Disziplin, Community-Aufbau und dem Helfen anderer.',
       careerTitle: 'Karriere',
+      statsTitle: 'In Zahlen',
+      statYears: 'Jahre kommerzielle Führungserfahrung',
+      statCommunity: 'Mitglieder der AI Community',
+      statTemplates: 'GO PURE Workout-Vorlagen',
+      statGrowth: 'Kundenwachstum bei Magnolia',
+      statChampion: 'Schweizer Stabhochsprung-Champion',
       adobeTitle: 'Adobe · Transformationswachstum & Strategie',
       adobeP1:
         'Ich bin im September 2022 zu Adobe gestossen. Meine Rolle ist Senior Manager für Transformationswachstum & Strategie im Blackbird-Team innerhalb von AEM Engineering. Ich leite strategische Transformation – Wachstumstaktiken, keine Technologie. Ich bringe über 20 Jahre kommerzielle Führungserfahrung in die Engineering-Kultur ein. Customer Experience. Beziehungsaufbau. Stakeholder-Management. All die Fähigkeiten eines Vertriebsleiters, die Communities zum Erfolg führen.',
@@ -171,11 +187,11 @@ const translations = {
       quote:
         '„Meine Führungsphilosophie ist klar: Vertrauen schaffen. Sichere Häfen bauen, wo Menschen schnell scheitern und noch schneller Erfolg haben können. So skaliert man."',
       athleticTitle: 'Sportliche Karriere',
-      poleVaultTitle: '🏆 Schweizer Stabhochsprung-Champion',
+      poleVaultTitle: 'Schweizer Stabhochsprung-Champion',
       poleVaultYear: '1996',
       poleVaultDesc:
         'Die Disziplin, der Fokus und die Hingabe im Leistungssport haben meinen Ansatz in allem geprägt, was ich tue.',
-      crossfitTitle: '💪 Crossfit-Athlet & Coach',
+      crossfitTitle: 'Crossfit-Athlet & Coach',
       crossfitPeriod: 'GO PURE · Aktuell',
       crossfitDesc:
         'Heute bin ich tief im Crossfit – ich trainiere selbst und coache bei GO PURE. Ich helfe anderen, ihre Stärke zu finden und Grenzen zu überwinden.',

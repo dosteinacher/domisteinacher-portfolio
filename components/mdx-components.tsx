@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import { ReactNode } from 'react';
+import { getBlurDataURL } from '@/lib/blurPlaceholders';
 
 type ChildrenProps = { children: ReactNode };
 
@@ -30,7 +31,14 @@ const components = {
   hr: () => <div className="divider-fire my-10" />,
   img: ({ src, alt }: { src?: string; alt?: string }) => (
     <div className="relative h-80 w-full rounded-lg overflow-hidden my-8">
-      <Image src={src ?? ''} alt={alt ?? ''} fill className="object-cover" />
+      <Image
+        src={src ?? ''}
+        alt={alt ?? ''}
+        fill
+        placeholder="blur"
+        blurDataURL={getBlurDataURL(src ?? '')}
+        className="object-cover"
+      />
     </div>
   ),
 };

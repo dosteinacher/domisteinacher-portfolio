@@ -4,8 +4,19 @@ import Image from 'next/image';
 import Navbar from '@/components/Navbar';
 import HeroSection from '@/components/HeroSection';
 import AnimateIn from '@/components/AnimateIn';
+import MediaReel, { MediaReelItem } from '@/components/MediaReel';
+import MagneticButton from '@/components/MagneticButton';
+import TiltCard from '@/components/TiltCard';
 import { useLanguage } from '@/context/LanguageContext';
 import { useT } from '@/lib/translations';
+import { getBlurDataURL } from '@/lib/blurPlaceholders';
+
+const trainingReel: MediaReelItem[] = [
+  { type: 'video', src: '/videos/reel-pullup.mp4', poster: '/videos/posters/reel-pullup.jpg', caption: 'Pull-Ups' },
+  { type: 'video', src: '/videos/reel-overhead-press.mp4', poster: '/videos/posters/reel-overhead-press.jpg', caption: 'Overhead Press' },
+  { type: 'video', src: '/videos/reel-handstand-pushup.mp4', poster: '/videos/posters/reel-handstand-pushup.jpg', caption: 'Handstand Push-Up' },
+  { type: 'video', src: '/videos/reel-barbell-jerk.mp4', poster: '/videos/posters/reel-barbell-jerk.jpg', caption: 'Barbell Jerk' },
+];
 
 const socialLinks = [
   {
@@ -39,36 +50,86 @@ export default function HomeContent() {
       <Navbar />
       <HeroSection />
 
+      {/* Training in Motion */}
+      <section className="py-20 relative overflow-hidden">
+        <div className="absolute inset-0 opacity-25">
+          <Image
+            src="/pullup-mood.jpeg"
+            alt=""
+            fill
+            placeholder="blur"
+            blurDataURL={getBlurDataURL('/pullup-mood.jpeg')}
+            className="object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-charcoal via-charcoal/85 to-charcoal" />
+        </div>
+
+        <div className="max-w-6xl mx-auto px-4 relative z-10">
+          <AnimateIn>
+            <h2 className="text-4xl md:text-5xl font-bold text-chalk mb-3 uppercase tracking-tight">
+              {t.home.trainingTitle}
+            </h2>
+            <p className="text-steel text-lg mb-10">{t.home.trainingDesc}</p>
+          </AnimateIn>
+        </div>
+
+        <AnimateIn delay={0.1} className="relative z-10">
+          <div className="max-w-6xl mx-auto px-4">
+            <MediaReel items={trainingReel} />
+          </div>
+        </AnimateIn>
+      </section>
+
       {/* About */}
-      <section className="py-20 px-4 bg-concrete border-y border-white/[0.04]">
-        <div className="max-w-6xl mx-auto">
+      <section className="py-20 px-4 bg-concrete border-y border-white/[0.04] relative overflow-hidden">
+        <div className="absolute inset-0 flex items-center justify-center opacity-[8%] pointer-events-none select-none">
+          <img src="/pattern-tribal.png" alt="" className="w-[500px] h-[500px] object-contain" />
+        </div>
+
+        <div className="max-w-6xl mx-auto relative z-10">
           <AnimateIn>
             <h2 className="text-4xl md:text-5xl font-bold text-chalk mb-12 uppercase tracking-tight">
               {t.home.aboutTitle}
             </h2>
           </AnimateIn>
 
-          <div className="grid md:grid-cols-2 gap-12">
-            <AnimateIn delay={0.1}>
-              <div className="flex items-center gap-4 mb-4">
-                <div className="relative w-16 h-16 rounded-full overflow-hidden border-2 border-rust flex-shrink-0">
-                  <Image src="/pole.JPG" alt="Pole Vault" fill className="object-cover" />
-                </div>
-                <h3 className="text-2xl font-bold text-rust">{t.home.athleticTitle}</h3>
+          <div className="grid md:grid-cols-12 gap-8 md:gap-6 mb-16 items-center">
+            <AnimateIn delay={0.1} className="md:col-span-5">
+              <div className="relative aspect-[4/5] rounded-lg overflow-hidden border border-rust/30 shadow-glow-rust -rotate-1">
+                <Image
+                  src="/pole.JPG"
+                  alt="Pole Vault"
+                  fill
+                  placeholder="blur"
+                  blurDataURL={getBlurDataURL('/pole.JPG')}
+                  className="object-cover"
+                />
               </div>
+            </AnimateIn>
+            <AnimateIn delay={0.15} className="md:col-span-7">
+              <h3 className="text-2xl font-bold text-rust mb-4">{t.home.athleticTitle}</h3>
               <p className="text-chalk/75 text-lg leading-relaxed mb-6">{t.home.athleticP1}</p>
               <p className="text-chalk/75 text-lg leading-relaxed">{t.home.athleticP2}</p>
             </AnimateIn>
+          </div>
 
-            <AnimateIn delay={0.2}>
-              <div className="flex items-center gap-4 mb-4">
-                <div className="relative w-16 h-16 rounded-full overflow-hidden border-2 border-blue/50 flex-shrink-0">
-                  <Image src="/balck&White1.jpg" alt="Professional" fill className="object-cover grayscale" />
-                </div>
-                <h3 className="text-2xl font-bold text-blue">{t.home.professionalTitle}</h3>
-              </div>
+          <div className="grid md:grid-cols-12 gap-8 md:gap-6 items-center">
+            <AnimateIn delay={0.1} className="md:col-span-7 md:order-1 order-2">
+              <h3 className="text-2xl font-bold text-blue mb-4">{t.home.professionalTitle}</h3>
               <p className="text-chalk/75 text-lg leading-relaxed mb-6">{t.home.professionalP1}</p>
               <p className="text-chalk/75 text-lg leading-relaxed">{t.home.professionalP2}</p>
+            </AnimateIn>
+            <AnimateIn delay={0.15} className="md:col-span-5 md:order-2 order-1">
+              <div className="relative aspect-[4/5] rounded-lg overflow-hidden border border-blue/30 shadow-glow-blue rotate-1">
+                <Image
+                  src="/portrait-lake.jpeg"
+                  alt="Dominik Steinacher"
+                  fill
+                  placeholder="blur"
+                  blurDataURL={getBlurDataURL('/portrait-lake.jpeg')}
+                  className="object-cover"
+                />
+              </div>
             </AnimateIn>
           </div>
         </div>
@@ -88,32 +149,46 @@ export default function HomeContent() {
           </AnimateIn>
 
           <AnimateIn delay={0.1}>
-            <div className="bg-concrete border-l-4 border-rust p-8 rounded-lg mb-8 hover:shadow-glow-rust hover:border-orange transition-all duration-300 group">
-              <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-4">
-                <h3 className="text-3xl font-bold text-chalk group-hover:text-rust transition-colors duration-200">
-                  GO PURE
-                </h3>
-                <span className="text-orange font-bold uppercase text-sm tracking-widest">
-                  {t.home.featuredLabel}
-                </span>
+            <TiltCard className="bg-concrete border-l-4 border-rust rounded-lg mb-8 hover:shadow-glow-rust hover:border-orange transition-colors duration-300 group overflow-hidden">
+              <div className="grid md:grid-cols-12">
+                <div className="relative h-56 md:h-auto md:col-span-5">
+                  <Image
+                    src="/gopure-gym-wide.jpg"
+                    alt="GO PURE gym"
+                    fill
+                    placeholder="blur"
+                    blurDataURL={getBlurDataURL('/gopure-gym-wide.jpg')}
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
+                <div className="p-8 md:col-span-7">
+                  <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-4">
+                    <h3 className="text-3xl font-bold text-chalk group-hover:text-rust transition-colors duration-200">
+                      GO PURE
+                    </h3>
+                    <span className="text-orange font-bold uppercase text-sm tracking-widest">
+                      {t.home.featuredLabel}
+                    </span>
+                  </div>
+                  <p className="text-chalk/70 text-lg leading-relaxed mb-6">{t.home.gopureDesc}</p>
+                  <div className="flex flex-wrap gap-2 mb-6">
+                    {['Next.js', 'TypeScript', 'Postgres', 'Vercel'].map((tech) => (
+                      <span key={tech} className="px-3 py-1 bg-charcoal text-blue/70 text-sm rounded border border-blue/[0.15]">
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                  <MagneticButton
+                    href="https://go-pure.ch"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-block bg-rust hover:bg-rust/90 text-chalk px-6 py-2 rounded font-bold uppercase tracking-wide transition-colors duration-200 hover:shadow-glow-rust"
+                  >
+                    {t.home.visitSite}
+                  </MagneticButton>
+                </div>
               </div>
-              <p className="text-chalk/70 text-lg leading-relaxed mb-6">{t.home.gopureDesc}</p>
-              <div className="flex flex-wrap gap-2 mb-6">
-                {['Next.js', 'TypeScript', 'Postgres', 'Vercel'].map((tech) => (
-                  <span key={tech} className="px-3 py-1 bg-charcoal text-blue/70 text-sm rounded border border-blue/[0.15]">
-                    {tech}
-                  </span>
-                ))}
-              </div>
-              <a
-                href="https://go-pure.ch"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block bg-rust hover:bg-rust/90 text-chalk px-6 py-2 rounded font-bold uppercase tracking-wide transition-all duration-200 hover:shadow-glow-rust"
-              >
-                {t.home.visitSite}
-              </a>
-            </div>
+            </TiltCard>
           </AnimateIn>
         </div>
       </section>
@@ -147,13 +222,13 @@ export default function HomeContent() {
           </AnimateIn>
 
           <AnimateIn delay={0.2}>
-            <a
+            <MagneticButton
               href="mailto:dominik@steinacher-bachmann.ch"
               className="inline-block text-2xl md:text-3xl font-bold text-rust hover:text-orange transition-colors duration-200"
             >
               dominik@steinacher-bachmann.ch
-            </a>
-            <p className="text-steel mt-4">Arlesheim, Switzerland 🇨🇭</p>
+            </MagneticButton>
+            <p className="text-steel mt-4">Arlesheim, Switzerland</p>
           </AnimateIn>
         </div>
       </section>

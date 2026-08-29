@@ -14,6 +14,9 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     const stored = localStorage.getItem('lang') as Lang | null;
+    // One-time read of a browser-only preference post-mount; SSR always
+    // starts 'en' to avoid a hydration mismatch, so this can't be lazy state.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     if (stored === 'de') setLang('de');
   }, []);
 

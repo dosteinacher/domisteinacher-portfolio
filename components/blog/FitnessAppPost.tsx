@@ -4,6 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useLanguage } from '@/context/LanguageContext';
 import { useT } from '@/lib/translations';
+import { getBlurDataURL } from '@/lib/blurPlaceholders';
 
 const post = {
   coverImage: '/blogs/fitness-app-no-code.png',
@@ -35,7 +36,14 @@ export default function FitnessAppPost() {
         </div>
 
         <div className="relative h-96 w-full rounded-lg overflow-hidden mb-8">
-          <Image src={post.coverImage} alt={postMeta.title} fill className="object-cover" />
+          <Image
+            src={post.coverImage}
+            alt={postMeta.title}
+            fill
+            placeholder="blur"
+            blurDataURL={getBlurDataURL(post.coverImage)}
+            className="object-cover"
+          />
         </div>
       </div>
 

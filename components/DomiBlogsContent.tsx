@@ -3,8 +3,10 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import Navbar from '@/components/Navbar';
+import TiltCard from '@/components/TiltCard';
 import { useLanguage } from '@/context/LanguageContext';
 import { useT } from '@/lib/translations';
+import { getBlurDataURL } from '@/lib/blurPlaceholders';
 
 const coverImages: Record<string, string> = {
   'fitness-app-no-code': '/blogs/fitness-app-no-code.png',
@@ -34,12 +36,14 @@ export default function DomiBlogsContent() {
         <div className="space-y-8">
           {posts.map((post) => (
             <Link key={post.slug} href={`/domiblogs/${post.slug}`} className="block group">
-              <article className="bg-concrete rounded-lg border-l-4 border-steel hover:border-rust transition-all duration-300 overflow-hidden">
+              <TiltCard className="bg-concrete rounded-lg border-l-4 border-steel hover:border-rust transition-colors duration-300 overflow-hidden">
                 <div className="relative h-64 w-full overflow-hidden">
                   <Image
                     src={coverImages[post.slug]}
                     alt={post.title}
                     fill
+                    placeholder="blur"
+                    blurDataURL={getBlurDataURL(coverImages[post.slug])}
                     className="object-cover group-hover:scale-105 transition-transform duration-300"
                   />
                 </div>
@@ -66,7 +70,7 @@ export default function DomiBlogsContent() {
                     </svg>
                   </div>
                 </div>
-              </article>
+              </TiltCard>
             </Link>
           ))}
         </div>

@@ -1,11 +1,11 @@
 'use client';
 
-import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useScroll } from 'framer-motion';
 import { useLanguage } from '@/context/LanguageContext';
 import { useT } from '@/lib/translations';
+import TransitionLink from '@/components/TransitionLink';
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -13,6 +13,7 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const { lang, toggle } = useLanguage();
   const t = useT(lang);
+  const { scrollYProgress } = useScroll();
 
   const navItems = [
     { name: t.nav.home,    href: '/' },
@@ -28,6 +29,8 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
+  // Intentional: close the mobile menu whenever the route changes.
+  // eslint-disable-next-line react-hooks/set-state-in-effect
   useEffect(() => { setOpen(false); }, [pathname]);
 
   useEffect(() => {
@@ -48,12 +51,12 @@ export default function Navbar() {
           <div className="flex items-center justify-between h-16">
 
             {/* Logo */}
-            <Link
+            <TransitionLink
               href="/"
               className="text-xl font-bold text-chalk hover:text-orange transition-colors duration-200 tracking-widest z-10"
             >
               DS
-            </Link>
+            </TransitionLink>
 
             {/* Desktop nav */}
             <div className="hidden md:flex items-center gap-8">
@@ -73,7 +76,7 @@ export default function Navbar() {
                   );
                 }
                 return (
-                  <Link
+                  <TransitionLink
                     key={item.href}
                     href={item.href}
                     className={`transition-colors duration-200 font-semibold uppercase text-sm tracking-wide pb-0.5 ${
@@ -83,7 +86,7 @@ export default function Navbar() {
                     }`}
                   >
                     {item.name}
-                  </Link>
+                  </TransitionLink>
                 );
               })}
 
@@ -124,6 +127,11 @@ export default function Navbar() {
 
           </div>
         </div>
+
+        <motion.div
+          style={{ scaleX: scrollYProgress }}
+          className="h-[2px] origin-left bg-gradient-to-r from-rust to-orange"
+        />
       </nav>
 
       {/* Mobile full-screen overlay */}
@@ -140,7 +148,7 @@ export default function Navbar() {
 
             {navItems.map((item, i) => {
               const isActive = pathname === item.href;
-              const Tag = item.external ? 'a' : Link;
+              const Tag = item.external ? 'a' : TransitionLink;
               const extraProps = item.external
                 ? { target: '_blank', rel: 'noopener noreferrer' }
                 : {};
