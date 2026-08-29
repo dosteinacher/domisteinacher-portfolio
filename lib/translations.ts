@@ -91,6 +91,14 @@ const translations = {
       minRead: 'min read',
       posts: [
         {
+          slug: 'how-to-create-a-vibrant-community',
+          title: 'How to Create a Vibrant Community',
+          date: 'Aug 29, 2026',
+          excerpt:
+            "Nobody assigns you a community. You get a channel, half an hour on someone's calendar, and a suspicion that people are solving the same problems without knowing about each other. Here's what actually works.",
+          readTime: '7 min read',
+        },
+        {
           slug: 'fitness-app-no-code',
           title: "I Built a Full Fitness App. I've Never Written a Single Line of Code.",
           date: 'May 10, 2026',
@@ -214,6 +222,14 @@ const translations = {
       by: 'von',
       minRead: 'Min. Lesezeit',
       posts: [
+        {
+          slug: 'how-to-create-a-vibrant-community',
+          title: 'Wie man eine lebendige Community aufbaut',
+          date: '29. Aug. 2026',
+          excerpt:
+            'Niemand weist dir eine Community zu. Du bekommst einen Kanal, eine halbe Stunde im Kalender von jemandem und die Vermutung, dass Menschen dieselben Probleme lösen, ohne voneinander zu wissen. Das hier hat wirklich funktioniert.',
+          readTime: '7 Min. Lesezeit',
+        },
         {
           slug: 'fitness-app-no-code',
           title: 'Ich habe eine komplette Fitness-App gebaut. Ich habe noch nie eine einzige Zeile Code geschrieben.',

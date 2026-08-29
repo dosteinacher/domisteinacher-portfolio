@@ -9,6 +9,7 @@ import { useT } from '@/lib/translations';
 import { getBlurDataURL } from '@/lib/blurPlaceholders';
 
 const coverImages: Record<string, string> = {
+  'how-to-create-a-vibrant-community': '/blogs/vibrant-community.png',
   'fitness-app-no-code': '/blogs/fitness-app-no-code.png',
   'hybrid-sales-strategies': '/blogs/Blog2a.jpg',
   'winning-the-game': '/blogs/Picture1.jpg',
