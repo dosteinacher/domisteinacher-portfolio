@@ -205,7 +205,7 @@ const translations = {
       ctaSecondary: 'GO PURE besuchen',
     },
     home: {
-      heroKicker: 'Hoi, ich bin Domi — Arlesheim, CH',
+      heroKicker: 'Hi, Domi, Dome, Niggle, Dominik - Arlesheim/Basel, CH',
       heroLead:
         'Ehemaliger Schweizer Stabhochsprung-Champion. Heute coache ich CrossFit bei GO PURE, baue eine AI-Community mit über 900 Mitgliedern auf und leite Transformation bei Adobe.',
       heroBlogs: 'DomiBlogs lesen →',
