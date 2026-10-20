@@ -71,8 +71,8 @@ const translations = {
     me: {
       title: 'About Me',
       pageKicker: 'About me',
-      titleLead: 'From the runway to the',
-      titleHighlight: 'boardroom.',
+      titleLead: 'From the runway to',
+      titleHighlight: 'management.',
       galleryAlt: ['Pole vault, 1996', 'CrossFit training', 'Professional life', 'A moment by the lake'],
       offClockTitle: 'Off the clock',
       chapters: [
@@ -260,8 +260,8 @@ const translations = {
     me: {
       title: 'Über mich',
       pageKicker: 'Über mich',
-      titleLead: 'Von der Anlaufbahn in den',
-      titleHighlight: 'Vorstand.',
+      titleLead: 'Von der Anlaufbahn ins',
+      titleHighlight: 'Management.',
       galleryAlt: ['Stabhochsprung, 1996', 'CrossFit-Training', 'Berufsleben', 'Ein Moment am See'],
       offClockTitle: 'Abseits der Arbeit',
       chapters: [
