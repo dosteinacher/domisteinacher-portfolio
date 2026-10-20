@@ -207,7 +207,7 @@ const translations = {
     home: {
       heroKicker: 'Hi, Domi, Dome, Niggle, Dominik - Arlesheim/Basel, CH',
       heroLead:
-        'Ehemaliger Schweizer Stabhochsprung-Champion. Heute coache ich CrossFit bei GO PURE, baue eine AI-Community mit über 900 Mitgliedern auf und leite Transformation bei Adobe.',
+        "Ehemaliger Schweizer Stabhochsprungmeister. Heute coache ich CrossFit bei GO-PURE, baue eine AI-Community mit über 1'800 Mitgliedern auf und leite Transformational Growth und Strategie bei Adobe.",
       heroBlogs: 'DomiBlogs lesen →',
       heroMe: 'Mehr über mich',
       marqueeItems: [
