@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
-import { Barlow_Condensed, Barlow } from "next/font/google";
+import { Barlow, Barlow_Condensed, Hanken_Grotesk, IBM_Plex_Mono, Unbounded } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { LanguageProvider } from "@/context/LanguageContext";
 import SmoothScroll from "@/components/SmoothScroll";
-import GrainOverlay from "@/components/GrainOverlay";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 import "./globals.css";
 
 const barlowCondensed = Barlow_Condensed({
@@ -18,6 +19,27 @@ const barlow = Barlow({
   weight: ["300", "400", "500"],
   subsets: ["latin"],
   variable: "--font-body",
+  display: "swap",
+});
+
+const unbounded = Unbounded({
+  weight: ["700", "900"],
+  subsets: ["latin"],
+  variable: "--font-unbounded",
+  display: "swap",
+});
+
+const hankenGrotesk = Hanken_Grotesk({
+  weight: ["400", "500", "600", "700"],
+  subsets: ["latin"],
+  variable: "--font-hanken",
+  display: "swap",
+});
+
+const ibmPlexMono = IBM_Plex_Mono({
+  weight: ["400", "500"],
+  subsets: ["latin"],
+  variable: "--font-ibm-plex-mono",
   display: "swap",
 });
 
@@ -46,11 +68,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${barlowCondensed.variable} ${barlow.variable} antialiased`}>
+      <body
+        className={`${barlowCondensed.variable} ${barlow.variable} ${unbounded.variable} ${hankenGrotesk.variable} ${ibmPlexMono.variable} antialiased`}
+      >
         <LanguageProvider>
-          <SmoothScroll>{children}</SmoothScroll>
+          <SmoothScroll>
+            <Navbar />
+            {children}
+            <Footer />
+          </SmoothScroll>
         </LanguageProvider>
-        <GrainOverlay />
         <Analytics />
         <SpeedInsights />
       </body>

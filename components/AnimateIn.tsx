@@ -1,6 +1,6 @@
 'use client';
 
-import { motion, useInView } from 'framer-motion';
+import { motion, useInView, useReducedMotion } from 'framer-motion';
 import { useRef, ReactNode } from 'react';
 
 type Props = {
@@ -12,14 +12,15 @@ type Props = {
 
 export default function AnimateIn({ children, className = '', delay = 0, y = 24 }: Props) {
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: '-60px' });
+  const inView = useInView(ref, { once: true, margin: '-60px', amount: 0.15 });
+  const reducedMotion = useReducedMotion();
 
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] }}
+      initial={reducedMotion ? false : { opacity: 0, y }}
+      animate={reducedMotion ? { opacity: 1, y: 0 } : inView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: reducedMotion ? 0 : 0.9, delay: reducedMotion ? 0 : delay, ease: [0.2, 0.8, 0.2, 1] }}
       className={className}
     >
       {children}

@@ -1,6 +1,6 @@
 'use client';
 
-import { motion, useScroll } from 'framer-motion';
+import { motion, useReducedMotion, useScroll } from 'framer-motion';
 import { useRef } from 'react';
 import { useDragScroll } from '@/lib/useDragScroll';
 
@@ -13,54 +13,41 @@ export type TimelineEntry = {
 
 type Props = {
   items: TimelineEntry[];
+  label: string;
+  hint: string;
 };
 
-/** Horizontally draggable/scrubbable career timeline, reusing the same
- * pointer-drag mechanics as MediaReel. A progress line above the strip
- * tracks scroll position, mirroring the nav's scroll-progress bar. */
-export default function DraggableTimeline({ items }: Props) {
+export default function DraggableTimeline({ items, label, hint }: Props) {
   const trackRef = useRef<HTMLDivElement>(null);
+  const reducedMotion = useReducedMotion();
   useDragScroll(trackRef);
   const { scrollXProgress } = useScroll({ container: trackRef });
 
   return (
-    <div>
-      <div className="relative h-1 bg-steel/20 rounded-full mb-8 overflow-hidden">
+    <div className="career-timeline">
+      <div className="career-timeline-progress" aria-hidden="true">
         <motion.div
-          className="absolute inset-y-0 left-0 w-full bg-gradient-to-r from-rust to-orange rounded-full origin-left"
-          style={{ scaleX: scrollXProgress }}
+          className="career-timeline-progress-value"
+          style={{ scaleX: reducedMotion ? 0 : scrollXProgress }}
         />
       </div>
-
       <div
         ref={trackRef}
-        className="flex gap-8 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide cursor-grab active:cursor-grabbing select-none"
+        className="career-timeline-track scrollbar-hide"
+        aria-label={label}
       >
-        {items.map((item, i) => (
-          <div key={i} className="relative flex-shrink-0 w-56 snap-start">
-            <div
-              className={`w-4 h-4 rounded-full mb-4 ${
-                item.current ? 'bg-rust ring-4 ring-rust/20' : 'bg-chalk'
-              }`}
-            />
-            <span
-              className={`inline-block px-3 py-1 rounded-full font-bold uppercase mb-2 ${
-                item.current
-                  ? 'text-sm bg-rust/30 text-rust border-2 border-rust'
-                  : 'text-xs bg-steel/30 text-chalk'
-              }`}
-            >
-              {item.company}
-            </span>
-            <p className={`font-mono mb-2 ${item.current ? 'text-sm text-chalk/80' : 'text-xs text-chalk/60'}`}>
-              {item.year}
-            </p>
-            <p className={`leading-tight ${item.current ? 'text-base text-chalk font-bold' : 'text-sm text-chalk/90 font-medium'}`}>
-              {item.role}
-            </p>
-          </div>
+        {items.map((item) => (
+          <article
+            key={`${item.year}-${item.company}`}
+            className={`career-timeline-entry${item.current ? ' is-current' : ''}`}
+          >
+            <p className="career-timeline-year">{item.year}</p>
+            <h3 className="career-timeline-company">{item.company}</h3>
+            <p className="career-timeline-role">{item.role}</p>
+          </article>
         ))}
       </div>
+      <p className="career-timeline-hint">{hint}</p>
     </div>
   );
 }

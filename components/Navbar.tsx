@@ -2,7 +2,7 @@
 
 import { usePathname } from 'next/navigation';
 import { useState, useEffect } from 'react';
-import { motion, AnimatePresence, useScroll } from 'framer-motion';
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { useLanguage } from '@/context/LanguageContext';
 import { useT } from '@/lib/translations';
 import TransitionLink from '@/components/TransitionLink';
@@ -10,10 +10,9 @@ import TransitionLink from '@/components/TransitionLink';
 export default function Navbar() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
   const { lang, toggle } = useLanguage();
   const t = useT(lang);
-  const { scrollYProgress } = useScroll();
+  const reducedMotion = useReducedMotion();
 
   const navItems = [
     { name: t.nav.home,    href: '/' },
@@ -22,12 +21,6 @@ export default function Navbar() {
     { name: t.nav.gopure,  href: 'https://go-pure.ch', external: true },
     { name: t.nav.contact, href: '/contact' },
   ];
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
 
   // Intentional: close the mobile menu whenever the route changes.
   // eslint-disable-next-line react-hooks/set-state-in-effect
@@ -39,169 +32,114 @@ export default function Navbar() {
   }, [open]);
 
   return (
-    <>
-      <nav
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          scrolled
-            ? 'bg-charcoal/98 backdrop-blur-md border-b border-white/[0.08] shadow-card'
-            : 'bg-charcoal/95 backdrop-blur-md border-b border-white/[0.06]'
-        }`}
-      >
-        <div className="container mx-auto px-4">
-          <div className="flex items-center justify-between h-16">
+    <header className="site-header">
+      <nav aria-label="Main navigation" className="site-nav">
+        <TransitionLink href="/" className="site-brand">
+          <span className="site-brand-mark" aria-hidden="true">DS</span>
+          <span className="site-brand-name">Domi Steinacher</span>
+        </TransitionLink>
 
-            {/* Logo */}
-            <TransitionLink
-              href="/"
-              className="text-xl font-bold text-chalk hover:text-orange transition-colors duration-200 tracking-widest z-10"
-            >
-              DS
-            </TransitionLink>
-
-            {/* Desktop nav */}
-            <div className="hidden md:flex items-center gap-8">
-              {navItems.map((item) => {
-                const isActive = pathname === item.href;
-                if (item.external) {
-                  return (
-                    <a
-                      key={item.href}
-                      href={item.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-steel hover:text-chalk transition-colors duration-200 font-semibold uppercase text-sm tracking-wide"
-                    >
-                      {item.name}
-                    </a>
-                  );
-                }
-                return (
-                  <TransitionLink
-                    key={item.href}
-                    href={item.href}
-                    className={`transition-colors duration-200 font-semibold uppercase text-sm tracking-wide pb-0.5 ${
-                      isActive
-                        ? 'text-chalk border-b-2 border-orange'
-                        : 'text-steel hover:text-chalk'
-                    }`}
-                  >
-                    {item.name}
-                  </TransitionLink>
-                );
-              })}
-
-              {/* Language toggle */}
-              <button
-                onClick={toggle}
-                className="flex items-center gap-1 text-xs font-bold uppercase tracking-widest border border-white/20 rounded px-2.5 py-1 text-steel hover:text-chalk hover:border-white/40 transition-all duration-200"
-                aria-label="Switch language"
+        <div className="site-nav-links">
+          {navItems.map((item) => {
+            const isActive = !item.external &&
+              (pathname === item.href || (item.href !== '/' && pathname.startsWith(`${item.href}/`)));
+            const className = `site-nav-link${isActive ? ' is-active' : ''}`;
+            if (item.external) {
+              return (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={className}
+                >
+                  {item.name}<span aria-hidden="true"> ↗</span>
+                </a>
+              );
+            }
+            return (
+              <TransitionLink
+                key={item.href}
+                href={item.href}
+                className={className}
+                aria-current={isActive ? 'page' : undefined}
               >
-                <span className={lang === 'en' ? 'text-chalk' : 'text-steel/50'}>EN</span>
-                <span className="text-white/20">|</span>
-                <span className={lang === 'de' ? 'text-chalk' : 'text-steel/50'}>DE</span>
-              </button>
-            </div>
-
-            {/* Hamburger — mobile only */}
-            <button
-              onClick={() => setOpen((v) => !v)}
-              className="md:hidden relative z-10 w-8 h-8 flex flex-col justify-center gap-[6px] group"
-              aria-label={open ? 'Close menu' : 'Open menu'}
-            >
-              <motion.span
-                animate={open ? { rotate: 45, y: 6 } : { rotate: 0, y: 0 }}
-                transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
-                className="block h-0.5 w-full bg-chalk origin-center"
-              />
-              <motion.span
-                animate={open ? { opacity: 0, scaleX: 0 } : { opacity: 1, scaleX: 1 }}
-                transition={{ duration: 0.2 }}
-                className="block h-0.5 w-full bg-chalk"
-              />
-              <motion.span
-                animate={open ? { rotate: -45, y: -6 } : { rotate: 0, y: 0 }}
-                transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
-                className="block h-0.5 w-full bg-chalk origin-center"
-              />
-            </button>
-
-          </div>
+                {item.name}
+              </TransitionLink>
+            );
+          })}
+          <LanguageToggle lang={lang} onToggle={toggle} />
         </div>
 
-        <motion.div
-          style={{ scaleX: scrollYProgress }}
-          className="h-[2px] origin-left bg-gradient-to-r from-rust to-orange"
-        />
+        <button
+          type="button"
+          onClick={() => setOpen((value) => !value)}
+          className="site-menu-toggle"
+          aria-label={open ? 'Close menu' : 'Open menu'}
+          aria-expanded={open}
+          aria-controls="mobile-navigation"
+        >
+          <span className={open ? 'is-open' : ''} />
+          <span className={open ? 'is-open' : ''} />
+        </button>
       </nav>
 
-      {/* Mobile full-screen overlay */}
       <AnimatePresence>
         {open && (
           <motion.div
-            initial={{ opacity: 0, y: -16 }}
+            id="mobile-navigation"
+            initial={reducedMotion ? false : { opacity: 0, y: -16 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -16 }}
-            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="fixed inset-0 z-40 bg-charcoal flex flex-col items-center justify-center gap-2"
+            transition={{ duration: reducedMotion ? 0 : 0.3, ease: [0.2, 0.8, 0.2, 1] }}
+            className="site-mobile-menu"
           >
-            <div className="absolute top-0 left-0 w-[600px] h-[600px] bg-rust/[0.05] rounded-full blur-[120px] pointer-events-none -translate-x-1/2 -translate-y-1/2" />
-
-            {navItems.map((item, i) => {
-              const isActive = pathname === item.href;
-              const Tag = item.external ? 'a' : TransitionLink;
-              const extraProps = item.external
-                ? { target: '_blank', rel: 'noopener noreferrer' }
-                : {};
-
+            {navItems.map((item) => {
+              const isActive = !item.external &&
+                (pathname === item.href || (item.href !== '/' && pathname.startsWith(`${item.href}/`)));
+              const className = `site-mobile-link${isActive ? ' is-active' : ''}`;
               return (
-                <motion.div
-                  key={item.href}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 10 }}
-                  transition={{ delay: 0.05 + i * 0.07, duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                >
-                  <Tag
+                item.external ? (
+                  <a
+                    key={item.href}
                     href={item.href}
-                    {...extraProps}
-                    className={`block text-4xl font-bold uppercase tracking-widest py-3 px-6 transition-colors duration-200 ${
-                      isActive ? 'text-orange' : 'text-chalk hover:text-orange'
-                    }`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={className}
+                  >
+                    {item.name}<span aria-hidden="true"> ↗</span>
+                  </a>
+                ) : (
+                  <TransitionLink
+                    key={item.href}
+                    href={item.href}
+                    className={className}
+                    aria-current={isActive ? 'page' : undefined}
                   >
                     {item.name}
-                  </Tag>
-                </motion.div>
+                  </TransitionLink>
+                )
               );
             })}
-
-            {/* Mobile language toggle */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 10 }}
-              transition={{ delay: 0.05 + navItems.length * 0.07, duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-            >
-              <button
-                onClick={toggle}
-                className="flex items-center gap-2 text-xl font-bold uppercase tracking-widest py-3 px-6 border border-white/20 rounded-lg text-steel hover:text-chalk hover:border-white/40 transition-all duration-200 mt-4"
-              >
-                <span className={lang === 'en' ? 'text-orange' : 'text-steel/50'}>EN</span>
-                <span className="text-white/20">|</span>
-                <span className={lang === 'de' ? 'text-orange' : 'text-steel/50'}>DE</span>
-              </button>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.4 }}
-              className="absolute bottom-10 text-steel text-sm tracking-widest uppercase"
-            >
-              domisteinacher.me
-            </motion.div>
+            <LanguageToggle lang={lang} onToggle={toggle} />
           </motion.div>
         )}
       </AnimatePresence>
-    </>
+    </header>
+  );
+}
+
+function LanguageToggle({ lang, onToggle }: { lang: 'en' | 'de'; onToggle: () => void }) {
+  return (
+    <button
+      type="button"
+      onClick={onToggle}
+      className="site-language-toggle"
+      aria-label="Switch language"
+    >
+      <span className={lang === 'en' ? 'is-selected' : ''}>EN</span>
+      <span aria-hidden="true">/</span>
+      <span className={lang === 'de' ? 'is-selected' : ''}>DE</span>
+    </button>
   );
 }

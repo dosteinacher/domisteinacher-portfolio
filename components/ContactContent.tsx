@@ -1,6 +1,5 @@
 'use client';
 
-import Navbar from '@/components/Navbar';
 import AnimateIn from '@/components/AnimateIn';
 import MagneticButton from '@/components/MagneticButton';
 import { useLanguage } from '@/context/LanguageContext';
@@ -34,69 +33,74 @@ export default function ContactContent() {
   const t = useT(lang);
 
   return (
-    <main className="min-h-screen bg-charcoal">
-      <Navbar />
+    <main className="contact-page">
+      <div className="contact-container">
+        <header className="contact-hero">
+          <AnimateIn>
+            <p className="contact-kicker">{t.contact.emailLabel} · {t.contact.addressLabel}</p>
+            <h1 className="contact-title">{t.contact.title}</h1>
+            <div className="contact-rule" />
+          </AnimateIn>
+        </header>
 
-      <div className="container mx-auto px-4 py-24 max-w-4xl">
-
-        <AnimateIn>
-          <h1 className="text-5xl md:text-6xl font-bold text-chalk mb-8 uppercase tracking-tight">
-            {t.contact.title}
-          </h1>
-          <div className="divider-fire mb-12" />
-        </AnimateIn>
-
-        <AnimateIn delay={0.1}>
-          <div className="grid md:grid-cols-2 gap-12 mb-16">
-            <div className="bg-concrete p-8 rounded-lg border-l-4 border-rust">
-              <h2 className="text-xl font-bold text-rust mb-4 uppercase">{t.contact.emailLabel}</h2>
+        <section className="contact-details" aria-label={t.contact.title}>
+          <AnimateIn>
+            <article className="contact-card contact-email-card">
+              <p className="contact-card-index">01 / {t.contact.emailLabel}</p>
+              <h2>{t.contact.emailLabel}</h2>
               <MagneticButton
                 href="mailto:dominik@steinacher-bachmann.ch"
-                className="text-chalk text-lg hover:text-rust transition-colors duration-200 block mb-2"
+                className="contact-email-link"
               >
                 dominik@steinacher-bachmann.ch
               </MagneticButton>
               <MagneticButton
                 href="mailto:nigglus@gmail.com"
-                className="text-chalk/70 hover:text-rust transition-colors duration-200 block"
+                className="contact-email-link contact-email-secondary"
               >
                 nigglus@gmail.com
               </MagneticButton>
-            </div>
+            </article>
+          </AnimateIn>
 
-            <div className="bg-concrete p-8 rounded-lg border-l-4 border-blue">
-              <h2 className="text-xl font-bold text-blue mb-4 uppercase">{t.contact.addressLabel}</h2>
-              <p className="text-chalk text-lg">
+          <AnimateIn delay={0.1}>
+            <article className="contact-card contact-address-card">
+              <p className="contact-card-index">02 / {t.contact.addressLabel}</p>
+              <h2>{t.contact.addressLabel}</h2>
+              <address>
                 Altenmattweg 13<br />
                 4144 Arlesheim<br />
                 Switzerland
-              </p>
-            </div>
-          </div>
-        </AnimateIn>
+              </address>
+            </article>
+          </AnimateIn>
+        </section>
 
         <AnimateIn delay={0.15}>
-          <div className="bg-concrete p-8 rounded-lg">
-            <h2 className="text-2xl font-bold text-chalk mb-6 uppercase">{t.contact.connectLabel}</h2>
-            <div className="grid sm:grid-cols-2 gap-4">
+          <section className="contact-social-section">
+            <div className="contact-social-heading">
+              <p className="contact-card-index">03 / {t.contact.connectLabel}</p>
+              <h2>{t.contact.connectLabel}</h2>
+            </div>
+            <div className="contact-social-grid">
               {socials.map(({ href, label, path }) => (
                 <a
                   key={label}
                   href={href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-3 bg-charcoal hover:bg-rust text-chalk px-6 py-4 rounded font-semibold transition-all duration-200 border border-white/[0.06] hover:border-rust hover:shadow-glow-rust"
+                  className="contact-social-link"
                 >
-                  <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                  <svg aria-hidden="true" viewBox="0 0 24 24">
                     <path d={path} />
                   </svg>
-                  {label}
+                  <span>{label}</span>
+                  <span className="contact-social-arrow" aria-hidden="true">↗</span>
                 </a>
               ))}
             </div>
-          </div>
+          </section>
         </AnimateIn>
-
       </div>
     </main>
   );

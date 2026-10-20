@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import { useEffect, useRef } from 'react';
+import { useReducedMotion } from 'framer-motion';
 import { getBlurDataURL } from '@/lib/blurPlaceholders';
 import { useDragScroll } from '@/lib/useDragScroll';
 
@@ -41,9 +42,10 @@ export default function MediaReel({ items, className = '', cardAspect = 'aspect-
 function ReelCard({ item, cardAspect }: { item: MediaReelItem; cardAspect: string }) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const wrapperRef = useRef<HTMLDivElement>(null);
+  const reducedMotion = useReducedMotion();
 
   useEffect(() => {
-    if (item.type !== 'video') return;
+    if (item.type !== 'video' || reducedMotion) return;
     const video = videoRef.current;
     const wrapper = wrapperRef.current;
     if (!video || !wrapper) return;
@@ -57,12 +59,12 @@ function ReelCard({ item, cardAspect }: { item: MediaReelItem; cardAspect: strin
     );
     observer.observe(wrapper);
     return () => observer.disconnect();
-  }, [item]);
+  }, [item, reducedMotion]);
 
   return (
     <div
       ref={wrapperRef}
-      className={`relative flex-shrink-0 w-[220px] md:w-[260px] ${cardAspect} rounded-xl overflow-hidden border border-white/[0.08] shadow-card snap-center bg-concrete`}
+      className={`media-reel-card relative flex-shrink-0 w-[min(72vw,260px)] ${cardAspect} snap-center`}
     >
       {item.type === 'video' ? (
         <video
@@ -86,8 +88,8 @@ function ReelCard({ item, cardAspect }: { item: MediaReelItem; cardAspect: strin
         />
       )}
       {item.caption && (
-        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-charcoal/90 to-transparent p-4 pt-10">
-          <p className="text-chalk font-bold uppercase text-sm tracking-wide">{item.caption}</p>
+        <div         className="media-reel-caption absolute bottom-0 left-0 right-0 p-4">
+          <p>{item.caption}</p>
         </div>
       )}
     </div>

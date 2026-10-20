@@ -1,12 +1,9 @@
-/** A single, site-wide film-grain texture layer. Unifies the visual feel
- * across photos of very different source quality (phone shots, professional
- * headshots, gym photos) without touching each image individually. Static
- * (no per-frame animation) to stay performance-first — pure CSS/SVG, no JS. */
+/** Static texture for placement inside ink-colored sections. */
 export default function GrainOverlay() {
   return (
     <div
       aria-hidden
-      className="fixed inset-0 z-[999] pointer-events-none opacity-[4%] mix-blend-overlay"
+      className="site-grain"
     >
       <svg className="w-full h-full">
         <filter id="grain">

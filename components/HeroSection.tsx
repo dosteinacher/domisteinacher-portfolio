@@ -1,204 +1,59 @@
 'use client';
 
 import Image from 'next/image';
-import { motion, useScroll, useTransform, useReducedMotion, useMotionValue } from 'framer-motion';
-import { useRef, useState, useEffect, PointerEvent } from 'react';
+import AnimateIn from '@/components/AnimateIn';
+import MagneticButton from '@/components/MagneticButton';
 import { useLanguage } from '@/context/LanguageContext';
 import { useT } from '@/lib/translations';
-import MagneticButton from '@/components/MagneticButton';
 import { getBlurDataURL } from '@/lib/blurPlaceholders';
-
-const ease = [0.22, 1, 0.36, 1] as const;
 
 export default function HeroSection() {
   const { lang } = useLanguage();
   const t = useT(lang);
-  const reducedMotion = useReducedMotion();
-  const [finePointer, setFinePointer] = useState(false);
-
-  useEffect(() => {
-    // One-time browser-only feature check post-mount; SSR always starts
-    // disabled to avoid a hydration mismatch.
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setFinePointer(window.matchMedia('(pointer: fine)').matches);
-  }, []);
-
-  const sectionRef = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ['start start', 'end start'],
-  });
-  const yFront = useTransform(scrollYProgress, [0, 1], [0, 120]);
-  const yBack = useTransform(scrollYProgress, [0, 1], [0, 60]);
-  const fadeOut = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
-
-  const spotlightX = useMotionValue(50);
-  const spotlightY = useMotionValue(50);
-  const spotlightEnabled = finePointer && !reducedMotion;
-  // Computed unconditionally — hooks can't be called inside the conditional
-  // JSX below, even though the resulting div only renders when enabled.
-  const spotlightBackground = useTransform(
-    [spotlightX, spotlightY],
-    ([x, y]) => `radial-gradient(400px circle at ${x}% ${y}%, rgba(255,255,255,0.12), transparent 70%)`
-  );
-
-  const handlePointerMove = (e: PointerEvent<HTMLElement>) => {
-    if (!spotlightEnabled) return;
-    const rect = e.currentTarget.getBoundingClientRect();
-    spotlightX.set(((e.clientX - rect.left) / rect.width) * 100);
-    spotlightY.set(((e.clientY - rect.top) / rect.height) * 100);
-  };
 
   return (
-    <section
-      ref={sectionRef}
-      onPointerMove={handlePointerMove}
-      className="min-h-screen flex items-center justify-center px-4 py-20 pt-24 relative overflow-hidden"
-    >
-      {/* Cursor spotlight — fine-pointer + motion-safe only */}
-      {spotlightEnabled && (
-        <motion.div
-          aria-hidden
-          className="absolute inset-0 pointer-events-none mix-blend-soft-light"
-          style={{ background: spotlightBackground }}
-        />
-      )}
-
-      {/* Atmospheric blobs — slow aurora drift, motion-safe only */}
-      <motion.div
-        className="absolute top-0 left-0 w-[900px] h-[900px] bg-rust/[0.06] rounded-full blur-[140px] pointer-events-none -translate-x-1/2 -translate-y-1/3"
-        animate={
-          reducedMotion
-            ? undefined
-            : { x: [0, 60, -20, 0], y: [0, -40, 30, 0], scale: [1, 1.08, 0.96, 1] }
-        }
-        transition={{ duration: 22, repeat: Infinity, ease: 'easeInOut' }}
-      />
-      <motion.div
-        className="absolute bottom-0 right-0 w-[700px] h-[700px] bg-blue/[0.03] rounded-full blur-[120px] pointer-events-none translate-x-1/3 translate-y-1/3"
-        animate={
-          reducedMotion
-            ? undefined
-            : { x: [0, -50, 30, 0], y: [0, 30, -30, 0], scale: [1, 0.94, 1.06, 1] }
-        }
-        transition={{ duration: 18, repeat: Infinity, ease: 'easeInOut' }}
-      />
-
-      <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center relative z-10">
-        {/* Text */}
-        <div>
-          <motion.h1
-            initial={{ opacity: 0, y: 32 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease }}
-            className="font-bold text-chalk mb-4 tracking-tight leading-[0.95]"
-            style={{ fontSize: 'clamp(2.75rem, 3rem + 4vw, 6rem)' }}
-          >
-            DOMINIK<br />
-            <span className="text-gradient-fire">STEINACHER</span>
-          </motion.h1>
-
-          <motion.div
-            initial={{ scaleX: 0 }}
-            animate={{ scaleX: 1 }}
-            transition={{ duration: 0.8, delay: 0.25, ease }}
-            style={{ originX: 0 }}
-            className="divider-fire mb-6"
-          />
-
-          <motion.p
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.35, ease }}
-            className="text-xl md:text-2xl text-steel mb-6"
-          >
-            {t.hero.tagline}
-          </motion.p>
-
-          <motion.p
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.45, ease }}
-            className="text-lg text-chalk/75 mb-8 leading-relaxed"
-          >
-            {t.hero.description}
-          </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.55, ease }}
-            className="flex gap-4 flex-wrap"
-          >
-            <MagneticButton
-              href="mailto:dominik@steinacher-bachmann.ch"
-              className="inline-block bg-rust hover:bg-rust/90 text-chalk px-8 py-3 rounded font-bold uppercase tracking-wide transition-colors duration-200 hover:shadow-glow-rust"
-            >
-              {t.hero.cta}
+    <section className="home-section home-hero">
+      <div className="home-container home-hero-grid">
+        <AnimateIn className="home-hero-copy">
+          <p className="home-kicker">
+            <span className="home-kicker-dot" aria-hidden="true" />
+            {t.home.heroKicker}
+          </p>
+          <h1 className="home-title">
+            <span className="home-title-name">DOMINIK</span>
+            <span className="home-highlight">STEINACHER</span>
+          </h1>
+          <p className="home-hero-lead">{t.home.heroLead}</p>
+          <div className="home-hero-actions">
+            <MagneticButton href="/domiblogs" className="home-button home-button-primary">
+              {t.home.heroBlogs}
             </MagneticButton>
-            <MagneticButton
-              href="https://go-pure.ch"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block border-2 border-blue/30 hover:border-blue text-chalk hover:text-blue px-8 py-3 rounded font-bold uppercase tracking-wide transition-colors duration-300 hover:bg-blue/5"
-            >
-              {t.hero.ctaSecondary}
+            <MagneticButton href="/me" className="home-button home-button-secondary">
+              {t.home.heroMe}
             </MagneticButton>
-          </motion.div>
-        </div>
+          </div>
+        </AnimateIn>
 
-        {/* Images — asymmetric, overlapping composition with scroll parallax */}
-        <div className="relative w-full h-[380px] sm:h-[440px] md:h-[500px]">
-          <div className="absolute inset-0 bg-rust/[0.04] blur-3xl rounded-full pointer-events-none" />
-
-          <motion.div
-            style={{ y: yBack }}
-            initial={{ opacity: 0, scale: 0.94, rotate: -3 }}
-            animate={{ opacity: 1, scale: 1, rotate: -3 }}
-            transition={{ duration: 0.8, delay: 0.3, ease }}
-            className="absolute right-0 top-0 w-[52%] aspect-[4/5] z-10"
-          >
+        <AnimateIn className="home-portrait-stage" delay={0.12}>
+          <div className="home-portrait-block" aria-hidden="true" />
+          <div className="home-portrait-frame">
             <Image
               src="/hero-photo-3.jpg"
-              alt="Dominik Steinacher"
+              alt="Dominik Steinacher in Arlesheim"
               fill
+              priority
+              sizes="(max-width: 740px) 88vw, (max-width: 1200px) 42vw, 480px"
               placeholder="blur"
               blurDataURL={getBlurDataURL('/hero-photo-3.jpg')}
-              className="object-cover rounded-lg border border-white/[0.08] shadow-card"
+              className="home-portrait"
             />
-          </motion.div>
-
-          <motion.div
-            style={{ y: yFront }}
-            initial={{ opacity: 0, scale: 0.94, rotate: 2 }}
-            animate={{ opacity: 1, scale: 1, rotate: 2 }}
-            transition={{ duration: 0.8, delay: 0.15, ease }}
-            className="absolute left-0 bottom-0 w-[58%] aspect-[4/5] z-20"
-          >
-            <Image
-              src="/squat-action-bw.jpg"
-              alt="Dominik Steinacher training at GO PURE"
-              fill
-              placeholder="blur"
-              blurDataURL={getBlurDataURL('/squat-action-bw.jpg')}
-              className="object-cover rounded-lg border border-rust/30 shadow-glow-rust grayscale"
-              priority
-            />
-          </motion.div>
-        </div>
+          </div>
+          <div className="home-champion-badge" aria-label="1996 Swiss champion in pole vault">
+            <span className="home-champion-year">1996</span>
+            <span className="home-champion-label">Swiss champ<br />pole vault</span>
+          </div>
+        </AnimateIn>
       </div>
-
-      {/* Scroll cue */}
-      <motion.div
-        style={{ opacity: fadeOut }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
-      >
-        <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 1.6, repeat: Infinity, ease: 'easeInOut' }}
-          className="w-5 h-5 border-b-2 border-r-2 border-steel/60 rotate-45"
-        />
-      </motion.div>
     </section>
   );
 }

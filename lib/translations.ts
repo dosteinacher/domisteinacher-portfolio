@@ -6,7 +6,7 @@ const translations = {
       home: 'Home',
       me: 'Me',
       blogs: 'DomiBlogs',
-      gopure: 'GO-PURE',
+      gopure: 'GO PURE',
       contact: 'Contact',
     },
     hero: {
@@ -17,6 +17,37 @@ const translations = {
       ctaSecondary: 'Visit GO PURE',
     },
     home: {
+      heroKicker: "Hey, I'm Domi — Arlesheim, CH",
+      heroLead:
+        'Former Swiss pole vault champion. Now I coach CrossFit at GO PURE, grow an AI community of 900+ people, and lead transformation at Adobe.',
+      heroBlogs: 'Read DomiBlogs →',
+      heroMe: 'More about me',
+      marqueeItems: [
+        'Pole vault champion',
+        'CrossFit coach',
+        'AI community builder',
+        'Growth strategist',
+        'Dad of two',
+      ],
+      thingsTitle: 'Three things I do every week.',
+      coachTitle: 'Coach',
+      coachDescription:
+        'I coach at GO PURE and help the crew find strength together.',
+      buildTitle: 'Build',
+      buildDescription:
+        'I share lessons from sport, sales, growth, and building with AI.',
+      growTitle: 'Grow',
+      growDescription:
+        'I build communities and lead strategic transformation at Adobe.',
+      mediaTitle: 'Training and life, in motion.',
+      mediaDescription: 'A few moving frames from the gym and beyond.',
+      statYears: 'Years of commercial leadership',
+      statCommunity: 'AI community members',
+      statTemplates: 'GO PURE workout templates',
+      statChampion: 'Swiss Pole Vault Champion',
+      latestTitle: 'Latest writing',
+      latestLabel: 'DomiBlogs',
+      allPosts: 'All posts →',
       aboutTitle: 'About Me',
       athleticTitle: 'Athletic Background',
       athleticP1:
@@ -39,6 +70,28 @@ const translations = {
     },
     me: {
       title: 'About Me',
+      pageKicker: 'About me',
+      titleLead: 'From the runway to the',
+      titleHighlight: 'boardroom.',
+      galleryAlt: ['Pole vault, 1996', 'CrossFit training', 'Professional life', 'A moment by the lake'],
+      offClockTitle: 'Off the clock',
+      chapters: [
+        { number: '01', title: 'Athletic background' },
+        { number: '02', title: 'Professional life' },
+      ],
+      timelineHeading: 'The path so far',
+      timelineHint: 'Drag or scroll to explore',
+      timeline: [
+        { year: '2022 — Today', company: 'Adobe', role: 'Senior Manager, Transformational Growth & Strategy' },
+        { year: '2021 — 2022', company: 'Netcentric AG', role: 'Director Growth & New Business, EMEA & ROW' },
+        { year: '2019 — 2021', company: 'Namics AG', role: 'Senior Principal Consultant, New Business' },
+        { year: '2017 — 2019', company: 'SAP Switzerland', role: 'Senior Solution Sales Executive' },
+        { year: '2012 — 2017', company: 'Magnolia International', role: 'Chief Commercial Officer / Partner' },
+        { year: '2008 — 2011', company: 'bank zweiplus ag', role: 'Head of Product Department' },
+        { year: '2004 — 2008', company: 'SIX Card Solutions', role: 'Head PM Issuing & Banking Solutions' },
+        { year: '2000 — 2003', company: 'The Fantastic Corporation', role: 'Head of MarCom, Investor Relations & PR' },
+        { year: '1992 — 1998', company: 'University of Basel', role: 'Master of Arts in Economics (lic. rer. pol.)' },
+      ],
       intro:
         'From Swiss Pole Vault Champion to building global sales teams and leading strategic transformation at Adobe—driven by discipline, community building, and helping others succeed.',
       careerTitle: 'Career Timeline',
@@ -130,6 +183,10 @@ const translations = {
       backToAll: '← Back to All Posts',
       by: 'by',
     },
+    footer: {
+      cta: "Let's train together →",
+      rights: 'All rights reserved.',
+    },
   },
 
   de: {
@@ -137,7 +194,7 @@ const translations = {
       home: 'Start',
       me: 'Über mich',
       blogs: 'DomiBlogs',
-      gopure: 'GO-PURE',
+      gopure: 'GO PURE',
       contact: 'Kontakt',
     },
     hero: {
@@ -148,6 +205,37 @@ const translations = {
       ctaSecondary: 'GO PURE besuchen',
     },
     home: {
+      heroKicker: 'Hoi, ich bin Domi — Arlesheim, CH',
+      heroLead:
+        'Ehemaliger Schweizer Stabhochsprung-Champion. Heute coache ich CrossFit bei GO PURE, baue eine AI-Community mit über 900 Mitgliedern auf und leite Transformation bei Adobe.',
+      heroBlogs: 'DomiBlogs lesen →',
+      heroMe: 'Mehr über mich',
+      marqueeItems: [
+        'Stabhochsprung-Champion',
+        'CrossFit-Coach',
+        'AI-Community-Aufbau',
+        'Wachstumsstratege',
+        'Vater von zwei Kindern',
+      ],
+      thingsTitle: 'Drei Dinge, die ich jede Woche mache.',
+      coachTitle: 'Coachen',
+      coachDescription:
+        'Bei GO PURE coache ich die Crew und helfe allen, gemeinsam stärker zu werden.',
+      buildTitle: 'Aufbauen',
+      buildDescription:
+        'Ich teile Erfahrungen aus Sport, Vertrieb, Wachstum und dem Bauen mit AI.',
+      growTitle: 'Wachsen',
+      growDescription:
+        'Ich baue Communities auf und leite strategische Transformation bei Adobe.',
+      mediaTitle: 'Training und Leben in Bewegung.',
+      mediaDescription: 'Ein paar bewegte Momente aus der Trainingshalle und darüber hinaus.',
+      statYears: 'Jahre kommerzielle Führungserfahrung',
+      statCommunity: 'Mitglieder der AI-Community',
+      statTemplates: 'GO PURE Workout-Vorlagen',
+      statChampion: 'Schweizer Stabhochsprung-Champion',
+      latestTitle: 'Neueste Beiträge',
+      latestLabel: 'DomiBlogs',
+      allPosts: 'Alle Beiträge →',
       aboutTitle: 'Über mich',
       athleticTitle: 'Sportlicher Hintergrund',
       athleticP1:
@@ -171,6 +259,28 @@ const translations = {
     },
     me: {
       title: 'Über mich',
+      pageKicker: 'Über mich',
+      titleLead: 'Von der Anlaufbahn in den',
+      titleHighlight: 'Vorstand.',
+      galleryAlt: ['Stabhochsprung, 1996', 'CrossFit-Training', 'Berufsleben', 'Ein Moment am See'],
+      offClockTitle: 'Abseits der Arbeit',
+      chapters: [
+        { number: '01', title: 'Sportlicher Hintergrund' },
+        { number: '02', title: 'Berufsleben' },
+      ],
+      timelineHeading: 'Bisheriger Weg',
+      timelineHint: 'Zum Entdecken ziehen oder scrollen',
+      timeline: [
+        { year: '2022 — heute', company: 'Adobe', role: 'Senior Manager, Transformational Growth & Strategy' },
+        { year: '2021 — 2022', company: 'Netcentric AG', role: 'Director Growth & New Business, EMEA & ROW' },
+        { year: '2019 — 2021', company: 'Namics AG', role: 'Senior Principal Consultant, New Business' },
+        { year: '2017 — 2019', company: 'SAP Switzerland', role: 'Senior Solution Sales Executive' },
+        { year: '2012 — 2017', company: 'Magnolia International', role: 'Chief Commercial Officer / Partner' },
+        { year: '2008 — 2011', company: 'bank zweiplus ag', role: 'Head of Product Department' },
+        { year: '2004 — 2008', company: 'SIX Card Solutions', role: 'Head PM Issuing & Banking Solutions' },
+        { year: '2000 — 2003', company: 'The Fantastic Corporation', role: 'Head of MarCom, Investor Relations & PR' },
+        { year: '1992 — 1998', company: 'Universität Basel', role: 'Master of Arts in Economics (lic. rer. pol.)' },
+      ],
       intro:
         'Vom Schweizer Stabhochsprung-Champion zum Aufbau globaler Vertriebsteams und zur Leitung strategischer Transformation bei Adobe – getrieben von Disziplin, Community-Aufbau und dem Helfen anderer.',
       careerTitle: 'Karriere',
@@ -262,6 +372,10 @@ const translations = {
       backToBlogs: '← Zurück zu DomiBlogs',
       backToAll: '← Zurück zu allen Beiträgen',
       by: 'von',
+    },
+    footer: {
+      cta: 'Lass uns gemeinsam trainieren →',
+      rights: 'Alle Rechte vorbehalten.',
     },
   },
 } as const;

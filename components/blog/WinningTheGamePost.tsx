@@ -17,45 +17,47 @@ export default function WinningTheGamePost() {
   const postMeta = t.blogs.posts.find((p) => p.slug === 'winning-the-game')!;
 
   return (
-    <article className="container mx-auto px-4 py-24 max-w-4xl">
-      <div className="mb-12">
-        <Link href="/domiblogs" className="text-rust hover:text-red-400 font-semibold mb-6 inline-block">
+    <article className="blog-article blog-winning-game-article">
+      <header className="article-header">
+        <Link href="/domiblogs" className="article-back">
           {t.blog.backToBlogs}
         </Link>
 
-        <h1 className="text-4xl md:text-5xl font-bold text-chalk mb-6 leading-tight">
+        <p className="article-kicker">DomiBlogs / Sport &amp; Growth</p>
+        <h1 className="article-title">
           {postMeta.title}
         </h1>
 
-        <div className="flex items-center gap-4 text-steel mb-8">
+        <div className="article-meta">
           <time>{postMeta.date}</time>
-          <span>•</span>
+          <span aria-hidden="true">•</span>
           <span>{t.blog.by} {post.author}</span>
-          <span>•</span>
+          <span aria-hidden="true">•</span>
           <span>{postMeta.readTime}</span>
         </div>
+      </header>
 
-        <div className="relative h-96 w-full rounded-lg overflow-hidden mb-8">
-          <Image
-            src={post.coverImage}
-            alt={postMeta.title}
-            fill
-            placeholder="blur"
-            blurDataURL={getBlurDataURL(post.coverImage)}
-            className="object-cover"
-          />
-        </div>
+      <div className="article-cover">
+        <Image
+          src={post.coverImage}
+          alt={postMeta.title}
+          fill
+          placeholder="blur"
+          blurDataURL={getBlurDataURL(post.coverImage)}
+          className="object-cover"
+          priority
+        />
       </div>
 
-      <div className="prose prose-invert prose-lg max-w-none">
+      <div className="article-body prose prose-lg max-w-none">
         {lang === 'en' ? <WinningTheGameEN /> : <WinningTheGameDE />}
       </div>
 
-      <div className="mt-12 pt-8 border-t border-steel/30">
-        <Link href="/domiblogs" className="inline-block bg-rust hover:bg-red-700 text-chalk px-8 py-3 rounded-lg font-bold transition">
+      <footer className="article-footer">
+        <Link href="/domiblogs" className="article-footer-link">
           {t.blog.backToAll}
         </Link>
-      </div>
+      </footer>
     </article>
   );
 }

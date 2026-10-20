@@ -1,4 +1,3 @@
-import Navbar from '@/components/Navbar';
 import { notFound } from 'next/navigation';
 import FitnessAppPost from '@/components/blog/FitnessAppPost';
 import WinningTheGamePost from '@/components/blog/WinningTheGamePost';
@@ -18,7 +17,6 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
   return (
     <main className="min-h-screen bg-charcoal">
-      <Navbar />
       {slug === 'fitness-app-no-code' && <FitnessAppPost />}
       {slug === 'winning-the-game' && <WinningTheGamePost />}
       {slug === 'hybrid-sales-strategies' && <HybridSalesPost />}
